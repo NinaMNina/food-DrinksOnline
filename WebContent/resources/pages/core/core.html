@@ -1,0 +1,58 @@
+<div>
+	<table width='100%'>
+		<tr>
+			<th widht='50%'></th>
+			<td widht='40%'></td>
+			<td widht='10%'><button class='buttonCore' ng-click='cc.signUp()'> Sign Up </button>  <button class='buttonCore'> Sign In </button></td>
+			
+		</tr>
+		<tr>
+			<th ><img alt="logo" class='imgCore' src="resources/images/cover.png" /></th>
+			<td></td>
+			<td></td>
+		</tr>
+	</table>
+</div>
+<div>
+	<table width='100%'>
+		<tr width='100%'>
+			<th width='20%'  ng-show='showMenu'>
+				<ul class='ulCore'>
+				  <li ng-hide='isHome'><a class="aCore" href="" ng-click='cc.goHome()'>Home</a></li>
+				  <li ng-show='isHome'><a class="aCoreActiv" href="" ng-click='cc.goHome()'>Home</a></li>
+				  <li ng-hide='isFavorite'><a class="aCore" href="" ng-click='cc.goFavorite()'>Favorite</a></li>
+				  <li ng-show='isFavorite'><a class="aCoreActiv" href="" ng-click='cc.goFavorite()'>Favorite</a></li>
+				  <li ng-hide='isOrders'><a class="aCore" href="" ng-click='cc.goOrders()'>My Orders</a></li>
+				  <li ng-show='isOrders'><a class="aCoreActiv" href="" ng-click='cc.goOrders()'>My Orders</a></li>
+				  <li ng-hide='isProfile'><a class="aCore" href="" ng-click='cc.goProfile()'>Profile</a></li>
+				  <li ng-show='isProfile'><a class="aCoreActiv" href="" ng-click='cc.goProfile()'>Profile</a></li>
+				</ul>
+			</th>
+			<td width='80%'>
+				<ui-view></ui-view>
+			</td>
+		</tr>
+	</table>
+</div>
+<!-- 
+<div class='fix'>
+	<ul class='ulCore'>
+		  <li>
+			
+		  </li>
+		  <li ng-hide='isHome'><a class="aCore" href="" ng-click='cc.goHome()'>Home</a></li>
+		  <li ng-show='isHome'><a class="aCoreActiv" href="" ng-click='cc.goHome()'>Home</a></li>
+		  <li ng-hide='isFavorite'><a class="aCore" href="" ng-click='cc.goFavorite()'>Favorite</a></li>
+		  <li ng-show='isFavorite'><a class="aCoreActiv" href="" ng-click='cc.goFavorite()'>Favorite</a></li>
+		  <li ng-hide='isOrders'><a class="aCore" href="" ng-click='cc.goOrders()'>My Orders</a></li>
+		  <li ng-show='isOrders'><a class="aCoreActiv" href="" ng-click='cc.goOrders()'>My Orders</a></li>
+		  <li ng-hide='isProfile'><a class="aCore" href="" ng-click='cc.goProfile()'>Profile</a></li>
+		  <li ng-show='isProfile'><a class="aCoreActiv" href="" ng-click='cc.goProfile()'>Profile</a></li>
+	</ul>
+	
+	<div>
+	  <ui-view>
+	  
+	  </ui-view>
+	</div>
+</div> -->

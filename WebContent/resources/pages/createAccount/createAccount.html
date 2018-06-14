@@ -1,0 +1,65 @@
+<div>
+	<table width='100%' class='tableAccount'>
+		<tr>
+			<td width='20%'></td>
+			<th width='10%'>userName:</th>
+			<td width='30%'><input type='text' ng-model="user.username" id='name'></td>
+			<td width='40%'></td>
+		</tr>
+		<tr>
+			<td height='5px'></td>
+		</tr>
+		<tr>
+			<td></td>
+			<th>password:</th>
+			<td><input type='password' id='pass1' ng-model="user.pass"></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<th>confirm password:</th>
+			<td><input type='password' id='pass2' ng-model="pass2"></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td height='5px'></td>
+		</tr>
+		<tr>
+			<td></td>
+			<th>first name:</th>
+			<td><input type='text' id='firstname' ng-model="user.ime"></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td ></td>
+			<th>last name:</th>
+			<td><input type='text' id='lastname' ng-model="user.prezime"></td>
+			<td width='20%'></td>
+		</tr>
+		<tr>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<th>e-mail:</th>
+			<td><input type="email" id='mail' ng-model="user.email"></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<th>phone:</th>
+			<td><input type="number" id='phone' ng-model="user.telefon"></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td height='5px'></td>
+		</tr>
+		<tr>
+			<td></td>
+			<th></th>
+			<td ng-hide='showMessage'><button ng-click="cac.makeAccount()">create account</button></td>
+			<td ng-show='showMessage'>{{secretMessage}}</td>
+			<td></td>
+		</tr>
+	</table>
+</div>

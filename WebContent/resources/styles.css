@@ -1,0 +1,57 @@
+body {
+    margin: 0;
+}
+
+.ulCore {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 18%;
+    background-color: #f1f1f1;
+    position: fixed;
+    height: 100%;
+    overflow: auto;
+    text-align: left
+}
+.aImgCore{
+	width:100%;
+    display: block;
+    color: #000;
+    text-decoration: none;
+}
+.aCore {
+    display: block;
+    color: #000;
+    padding: 8px 16px;
+    text-decoration: none;
+}
+
+.aCoreActiv {
+    display: block;
+    padding: 8px 16px;
+    text-decoration: none;
+    background-color: #0080c0;
+    color: white;
+}
+
+.aCore:hover{
+    background-color: #555;
+    color: white;
+}
+.imgCore{
+	float: left;
+	width:500px;
+	height: 100px;
+}
+.fix{
+	position: fixed;
+}
+.buttonCore {
+    background-color: white;
+    color: black;
+    border: 2px solid #8B0000; 
+    float: right;
+}
+.tableAccount{
+	text-align: left;
+}
