@@ -1,0 +1,29 @@
+<div>
+	<table width='100%' class='tableAccount'>
+		<tr>
+			<td width='20%'></td>
+			<th width='10%'>userName:</th>
+			<td width='30%'><input type='text' ng-model="user.username" id='name'></td>
+			<td width='40%'></td>
+		</tr>
+		<tr>
+			<td height='5px'></td>
+		</tr>
+		<tr>
+			<td></td>
+			<th>password:</th>
+			<td><input type='password' id='pass1' ng-model="user.pass"></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td height='5px'></td>
+		</tr>
+		<tr>
+			<td></td>
+			<th></th>
+			<td ng-hide='showMessage'><button ng-click="sc.signIn()">Log In</button></td>
+			<td ng-show='showMessage'>{{secretMessage}}</td>
+			<td></td>
+		</tr>
+	</table>
+</div>

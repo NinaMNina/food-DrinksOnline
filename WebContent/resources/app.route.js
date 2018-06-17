@@ -25,6 +25,12 @@
             templateUrl: 'resources/pages/createAccount/createAccount.html',
             controller: 'createAccountController',
             controllerAs: 'cac'
+        })
+        .state('core.signIn', {
+            url: 'signIn',
+            templateUrl: 'resources/pages/signIn/signIn.html',
+            controller: 'signInController',
+            controllerAs: 'sc'
         });
 
 

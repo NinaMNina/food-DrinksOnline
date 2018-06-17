@@ -5,8 +5,8 @@
 		.module('app')
 		.controller('coreController', coreController);
 
-    coreController.$inject = ['$scope', '$location', '$rootScope', '$http'];
-    function coreController($scope, $location, $rootScope, $http) {
+    coreController.$inject = ['$scope', '$location', '$rootScope', '$http', '$cookies'];
+    function coreController($scope, $location, $rootScope, $http, $cookies) {
         var cc = this;
 
         var init = function (){
@@ -64,6 +64,10 @@
         	$location.path('/createAccount');
         	
         }
-
+        cc.signIn = function(){
+        	$rootScope.showMenu = false;
+        	$location.path('/signIn');
+        	
+        }
     }
 })();
