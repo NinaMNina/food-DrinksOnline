@@ -5,8 +5,8 @@
 		.module('app')
 		.controller('signInController', signInController);
 
-    signInController.$inject = ['$scope', '$location', '$rootScope', '$http', '$cookies'];
-    function signInController($scope, $location, $rootScope, $http, $cookies) {
+    signInController.$inject = ['$scope', '$location', '$rootScope', '$http', '$cookies', '$timeout'];
+    function signInController($scope, $location, $rootScope, $http, $cookies, $timeout) {
         var sc = this;
 
         var init = function (){
@@ -14,7 +14,8 @@
         	$scope.showMessage=false;
         	$scope.secretMessage="";
         	$scope.user={"username": "",
-        			"pass": ""};
+        			"pass": "",
+        			"uloga": "REG"};
         };        
         init();
         
@@ -33,9 +34,18 @@
 	     			});	
               	$rootScope.showMenu=true;
               	$location.path('/home'); 
+        		$rootScope.logged = true;
+              	if(response.data.uloga=='ADMIN'){
+                  	$rootScope.isAdmin=true;
+                  	$rootScope.showMenu=false;   
+    	        	$rootScope.isHome = false; 
+    	        	$rootScope.addRest=true;
+                  	$location.path('/addRestaurant');           		
+              	}
             	  
               }, function errorCallback(response) {
-	              	$scope.secretMessage="Something went wrong. Try it again.";     
+	              	$scope.secretMessage="Something went wrong. Try it again.";  
+	        		$rootScope.logged = false;   
 	                sc.showError();
                });
         }

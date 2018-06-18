@@ -3,7 +3,8 @@
 		<tr>
 			<th widht='50%'></th>
 			<td widht='40%'></td>
-			<td widht='10%'><button class='buttonCore' ng-click='cc.signUp()'> Sign Up </button>  <button class='buttonCore' ng-click='cc.signIn()'> Sign In </button></td>
+			<td widht='10%' ng-hide='logged'><button class='buttonCore' ng-click='cc.signUp()'> Sign Up </button>  <button class='buttonCore' ng-click='cc.signIn()'> Sign In </button></td>
+			<td widht='10%' ng-show='logged'><button class='buttonCore' ng-click='cc.logOut()'> Log Out </button></td>
 			
 		</tr>
 		<tr>
@@ -26,6 +27,34 @@
 				  <li ng-show='isOrders'><a class="aCoreActiv" href="" ng-click='cc.goOrders()'>My Orders</a></li>
 				  <li ng-hide='isProfile'><a class="aCore" href="" ng-click='cc.goProfile()'>Profile</a></li>
 				  <li ng-show='isProfile'><a class="aCoreActiv" href="" ng-click='cc.goProfile()'>Profile</a></li>
+				</ul>
+			</th>
+			<th width='20%'  ng-show='isAdmin'>
+				<ul class='ulCore'>
+				  <li class='liCore'>Restaurant</li>
+				  <li ng-hide='addRest'><a class="aCore" href="" ng-click='cc.addRest()'>Add</a></li>
+				  <li ng-show='addRest'><a class="aCoreActiv" href="" ng-click='cc.addRest()'>Add</a></li>
+				  <li ng-hide='rest.edit'><a class="aCore" href="" ng-click='cc.editRest()'>Edit</a></li>
+				  <li ng-show='rest.edit'><a class="aCoreActiv" href="" ng-click='cc.editRest()'>Edit</a></li>
+				  <li ng-hide='rest.del'><a class="aCore" href="" ng-click='cc.delRest()'>Delete</a></li>
+				  <li ng-show='rest.del'><a class="aCoreActiv" href="" ng-click='cc.delRest()'>Delete</a></li>
+				  <li class='liCore'>Menu Item</li>
+				  <li ng-hide='item.add'><a class="aCore" href="" ng-click='cc.addItem()'>Add</a></li>
+				  <li ng-show='item.add'><a class="aCoreActiv" href="" ng-click='cc.addItem()'>Add</a></li>
+				  <li ng-hide='item.edit'><a class="aCore" href="" ng-click='cc.editItem()'>Edit</a></li>
+				  <li ng-show='item.edit'><a class="aCoreActiv" href="" ng-click='cc.editItem()'>Edit</a></li>
+				  <li ng-hide='item.del'><a class="aCore" href="" ng-click='cc.delItem()'>Delete</a></li>
+				  <li ng-show='item.del'><a class="aCoreActiv" href="" ng-click='cc.delItem()'>Delete</a></li>
+				  <li class='liCore'>Vehicle</li>
+				  <li ng-hide='vehicle.add'><a class="aCore" href="" ng-click='cc.addVehicle()'>Add</a></li>
+				  <li ng-show='vehicle.add'><a class="aCoreActiv" href="" ng-click='cc.addVehicle()'>Add</a></li>
+				  <li ng-hide='vehicle.edit'><a class="aCore" href="" ng-click='cc.editVehicle()'>Edit</a></li>
+				  <li ng-show='vehicle.edit'><a class="aCoreActiv" href="" ng-click='cc.editVehicle()'>Edit</a></li>
+				  <li ng-hide='vehicle.del'><a class="aCore" href="" ng-click='cc.delVehicle()'>Delete</a></li>
+				  <li ng-show='vehicle.del'><a class="aCoreActiv" href="" ng-click='cc.delVehicle()'>Delete</a></li>
+				  <li class='liCore'>Users</li>				  
+				  <li ng-hide='users.change'><a class="aCore" href="" ng-click='cc.changeType()'>Change Type</a></li>
+				  <li ng-show='users.change'><a class="aCoreActiv" href="" ng-click='cc.changeType()'>Change Type</a></li>
 				</ul>
 			</th>
 			<td width='80%'>

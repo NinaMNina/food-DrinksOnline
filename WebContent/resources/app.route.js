@@ -31,6 +31,12 @@
             templateUrl: 'resources/pages/signIn/signIn.html',
             controller: 'signInController',
             controllerAs: 'sc'
+        })
+        .state('core.addRestaurant', {
+            url: 'addRestaurant',
+            templateUrl: 'resources/pages/restaurant/addRestaurant.html',
+            controller: 'restaurantController',
+            controllerAs: 'rc'
         });
 
 

@@ -45,6 +45,7 @@ public class KorisnikController {
 		for(Korisnik k0 : korisnici){
 			if(k0.getUsername().equals(k.getUsername()))
 				if(k0.getPass().equals(k.getPass())){
+					k.setUloga(k0.getUloga());
 					return Response.ok(k, MediaType.APPLICATION_JSON).build();					
 				}
 		}

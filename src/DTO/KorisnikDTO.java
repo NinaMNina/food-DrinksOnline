@@ -1,8 +1,11 @@
 package DTO;
 
+import bean.enums.Uloga;
+
 public class KorisnikDTO {
 	private String username;
 	private String pass;
+	private Uloga uloga;
 	public String getUsername() {
 		return username;
 	}
@@ -14,6 +17,12 @@ public class KorisnikDTO {
 	}
 	public void setPass(String pass) {
 		this.pass = pass;
+	}
+	public Uloga getUloga() {
+		return uloga;
+	}
+	public void setUloga(Uloga uloga) {
+		this.uloga = uloga;
 	}
 	public KorisnikDTO(){
 		

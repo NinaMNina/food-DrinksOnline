@@ -10,6 +10,7 @@ public class Restoran implements Serializable{
 	private String naziv;
 	private String adresa;
 	private Kategorija kategorija;
+	private boolean activ;
 	
 	private ArrayList<Pice> pica;
 	private ArrayList<Jelo> jela;
@@ -49,7 +50,15 @@ public class Restoran implements Serializable{
 	}
 	public void setJela(ArrayList<Jelo> jela) {
 		this.jela = jela;
+	}	
+	public boolean isActiv() {
+		return activ;
 	}
+
+	public void setActiv(boolean activ) {
+		this.activ = activ;
+	}
+
 	public Restoran() {
 	}
 	
