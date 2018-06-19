@@ -6,12 +6,13 @@ body {
     list-style-type: none;
     margin: 0;
     padding: 0;
-    width: 18%;
+    width: 100%;
     background-color: #f3f3f3;
-    position: fixed;
+    position: static;
     height: 100%;
     overflow: auto;
-    text-align: left
+    text-align: left;
+    
 }
 .aImgCore{
 	width:100%;
@@ -57,6 +58,18 @@ body {
 	color: white;
 	background-color: #8B0000;
 }
+.viewCore{
+	 position: fixed;
+  	top: 133px;
+    background-color: #f3f3f3;
+}
 .tableAccount{
 	text-align: left;
+}
+.tableRestaurant{
+	text-align: left;
+}
+.h3Restaurant{
+	font-weight: bold;
+	color: #8B0000;	
 }

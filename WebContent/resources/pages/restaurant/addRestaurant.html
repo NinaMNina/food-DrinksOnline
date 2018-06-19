@@ -1,0 +1,35 @@
+<div>
+	<h3 class='h3Restaurant'>Adding a restaurant</h3>
+	<table width='100%' class='tableRestaurant'>
+		<tr>
+			<td width='20%'></td>
+			<th width='10%'>name:</th>
+			<td width='30%'><input type='text' ng-model="r.naziv" id='name' size=40></td>
+			<td width='40%'></td>
+		</tr>
+		<tr>
+			<td></td>
+			<th>address:</th>
+			<td><input type='text' id='address' ng-model="r.adresa" size=60></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td ></td>
+			<th>category:</th>
+			<td><select ng-model='kateg'>
+				<option ng-repeat="x in kategorije">{{x}}</option>
+			</select></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td height='5px'></td>
+		</tr>
+		<tr>
+			<td></td>
+			<th></th>
+			<td ng-hide='showMessage'><button ng-click="rc.addRestaurant()">Add restaurant</button></td>
+			<td ng-show='showMessage'>{{secretMessage}}</td>
+			<td></td>
+		</tr>
+	</table>
+</div>
