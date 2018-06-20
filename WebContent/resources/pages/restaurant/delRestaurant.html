@@ -1,0 +1,17 @@
+<div>
+	<table>
+		<tr ng-repeat='rest in opcijeBrisanje'>
+			<td width='10%'></td>
+			<td width='20%'>{{rest.naziv}}</td>
+			<td width='30%'>{{rest.adresa}}</td>
+			<td width='10%'>{{rest.kateg}}</td>
+			<td width='10%'>active 
+				<label class="switch">
+			  		<input type="checkbox" ng-click='rc.deleteRest(rest)' ng-model='rest.activ' ng-disabled="!rest.activ">
+				  <span class="slider round"></span>
+				</label>
+			</td>
+			<td width='20%'></td>
+		</tr>
+	</table>
+</div>

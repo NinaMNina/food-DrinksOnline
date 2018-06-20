@@ -37,6 +37,18 @@
             templateUrl: 'resources/pages/restaurant/addRestaurant.html',
             controller: 'restaurantController',
             controllerAs: 'rc'
+        })
+        .state('core.editRestaurant', {
+            url: 'editRestaurant',
+            templateUrl: 'resources/pages/restaurant/editRestaurant.html',
+            controller: 'restaurantController',
+            controllerAs: 'rc'
+        })
+        .state('core.delRestaurant', {
+            url: 'delRestaurant',
+            templateUrl: 'resources/pages/restaurant/delRestaurant.html',
+            controller: 'restaurantController',
+            controllerAs: 'rc'
         });
 
 

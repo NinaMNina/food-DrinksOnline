@@ -141,7 +141,7 @@
         	$scope.vehicle.edit=false;
         	$scope.vehicle.del=false;
         	$scope.users.change=false;
-        	$location.path('/deleteRestaurant');
+        	$location.path('/delRestaurant');
         }
         cc.addItem = function(){
         	if($scope.item.add == true ){
