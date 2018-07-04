@@ -49,6 +49,24 @@
             templateUrl: 'resources/pages/restaurant/delRestaurant.html',
             controller: 'restaurantController',
             controllerAs: 'rc'
+        })
+        .state('core.addMenuItem', {
+            url: 'addMenuItem',
+            templateUrl: 'resources/pages/menuItem/addMenuItem.html',
+            controller: 'menuItemController',
+            controllerAs: 'mic'
+        })
+        .state('core.delMenuItem', {
+            url: 'delMenuItem',
+            templateUrl: 'resources/pages/menuItem/delMenuItem.html',
+            controller: 'menuItemController',
+            controllerAs: 'mic'
+        })
+        .state('core.editMenuItem', {
+            url: 'editMenuItem',
+            templateUrl: 'resources/pages/menuItem/editMenuItem.html',
+            controller: 'menuItemController',
+            controllerAs: 'mic'
         });
 
 

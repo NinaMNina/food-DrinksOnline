@@ -1,0 +1,97 @@
+<div ng-hide='isEdit'>
+	<h3 class='h3Restaurant'>Choose menu item to edit</h3>
+	<table width='100%' class='tableRestaurant'>
+		<tr ng-repeat='rest in sviRestorani'>
+			<td width='30%'>
+				<table>
+					<tr>
+						<th>
+							{{rest.naziv}}
+						</th>
+					</tr>
+					<tr>
+						<th>
+							{{rest.adresa}}
+						</th>
+					</tr>
+					<tr>
+						<td>
+							{{rest.kateg}}
+						</td>
+					</tr>
+				</table>
+			</td>
+			<td>
+				<table>
+					<tr>
+						<th width='20%'>name</th>
+						<th width='50%'>description</th>
+						<th width='10%'>price</th>
+						<th width='10%'>weight/volume</th>
+						<th width='10%'></td>
+					</tr>	
+					<tr ng-repeat='jelo in rest.jela' class='jeloEdit'>
+						<td>{{jelo.naziv}}</td>
+						<td>{{jelo.opis}}</td>
+						<td>{{jelo.cena}}</td>
+						<td>{{jelo.grama}} g</td>
+						<td><button class='buttonRest' ng-click='mic.doEditingJelo(jelo)'>edit item</button></td>
+					</tr>		
+					<tr ng-repeat='pice in rest.pica' class='piceEdit'>
+						<td>{{pice.naziv}}</td>
+						<td>{{pice.opis}}</td>
+						<td>{{pice.cena}}</td>
+						<td>{{pice.mililitara}} ml</td>
+						<td><button class='buttonRest' ng-click='mic.doEditingPice(pice)'>edit item</button></td>
+					</tr>				
+				</table>
+			</td>
+		</tr>
+	</table>
+</div>
+<div ng-show='isEdit'>
+	<h3 class='h3Restaurant'>Editing {{emi.naziv}}</h3>
+	<table width='100%' class='tableRestaurant'>
+		<tr>
+			<td width='20%'></td>
+			<th width='10%'>name:</th>
+			<td width='30%'><input type='text' ng-model="emi.naziv" id='name' size=40></td>
+			<td width='40%'></td>
+		</tr>
+		<tr>
+			<td></td>
+			<th>description:</th>
+			<td><textarea id='description' ng-model="emi.opis" rows="4" cols="50"></textarea></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<th>price:</th>
+			<td><input type='number' id='cena' ng-model="emi.cena" size=6></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<th>quantity:</th>
+			<td><input type='number' id='cena' ng-model="kol.iznos" size=6>{{kol.naziv}}</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td height='5px'></td>
+		</tr>
+		<tr>
+			<td></td>
+			<th></th>
+			<td ng-hide='showMessage'><button ng-click="mic.editMenuItem()">Save changes</button></td>
+			<td ng-show='showMessage'>{{secretMessage}}</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<th></th>
+			<td ng-hide='showMessage'><button ng-click="mic.goBackToChoice()">Go back</button></td>
+			<td></td>
+			<td></td>
+		</tr>
+	</table>
+</div>

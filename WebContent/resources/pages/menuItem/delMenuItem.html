@@ -1,0 +1,61 @@
+<div>
+	<h3 class='h3Restaurant'>Delete Menu Item</h3>
+	<table width='100%' class='tableRestaurant'>
+		<tr ng-repeat='rest in sviRestorani'>
+			<td width='30%'>
+				<table>
+					<tr>
+						<th>
+							{{rest.naziv}}
+						</th>
+					</tr>
+					<tr>
+						<th>
+							{{rest.adresa}}
+						</th>
+					</tr>
+					<tr>
+						<td>
+							{{rest.kateg}}
+						</td>
+					</tr>
+				</table>
+			</td>
+			<td>
+				<table>
+					<tr>
+						<th width='10%'>name</th>
+						<th width='50%'>description</th>
+						<th width='10%'>price</th>
+						<th width='10%'>weight/volume</th>
+						<th width='20%'></td>
+					</tr>	
+					<tr ng-repeat='jelo in rest.jela' class='jeloEdit'>
+						<td>{{jelo.naziv}}</td>
+						<td>{{jelo.opis}}</td>
+						<td>{{jelo.cena}}</td>
+						<td>{{jelo.grama}} g</td>
+						<td>
+							<label class="switch">
+						  		<input type="checkbox" ng-click='mic.deleteJelo(jelo)' ng-model='jelo.activ' ng-disabled="!jelo.activ">
+								<span class="slider round"></span>
+							</label>delete it
+				  		</td>
+					</tr>		
+					<tr ng-repeat='pice in rest.pica' class='piceEdit'>
+						<td>{{pice.naziv}}</td>
+						<td>{{pice.opis}}</td>
+						<td>{{pice.cena}}</td>
+						<td>{{pice.mililitara}} ml</td>
+						<td>
+							<label class="switch">
+						  		<input type="checkbox" ng-click='mic.deletePice(pice)' ng-model='pice.activ' ng-disabled="!pice.activ">
+								<span class="slider round"></span>
+							</label>delete it
+						</td>
+					</tr>				
+				</table>
+			</td>
+		</tr>
+	</table>
+</div>

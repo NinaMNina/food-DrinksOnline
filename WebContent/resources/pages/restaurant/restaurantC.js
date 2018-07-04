@@ -49,6 +49,7 @@
             		  var o = response.data[i];
             		  setOCategory(o);
         		  	  $scope.opcijeBrisanje.push(o);
+        		  	  $scope.odabranEdit=o;
             	  }
               }, function errorCallback(response) {
             	  
@@ -92,7 +93,10 @@
                 method: 'DELETE',
                 url: 'rest/restoran/brisi/'+rest.id
               }).then(function successCallback(response) {
-	               
+            	  for(var i=0; $scope.opcije.length; i++){
+                	  $scope.opcije.splice(i, 1);
+                	  return;
+            	  }
               }, function errorCallback(response) {
                });
         }
@@ -163,14 +167,23 @@
        rc.editRestaurant = function(){
     	   if($scope.er.naziv=="" || $scope.er.adresa=="" || $scope.kateg==""){
              	$scope.secretMessage="All data neccessery. Restaurant not changed.";     
-               rc.showResponse();        		
-       		return;
+             	rc.showResponse();        		
+       			return;
        		}
     	   setCategoryEdit();
+    	   var data = {
+    			   "id": $scope.er.id,
+    			   "naziv": $scope.er.naziv,
+    			   "adresa": $scope.er.adresa,
+    			   "kategorija": $scope.er.kategorija,
+    			   "activ": true,
+    			   "pica": $scope.er.jela,
+    			   "jela": $scope.er.pica
+    	   };
     	   $http({
                method: 'POST',
                url: 'rest/restoran/izmeni',
-               data: $scope.er   
+               data: data
              }).then(function successCallback(response) {
 	               $scope.secretMessage="Restaurant changed succesfully";
 	               rc.showResponseAndMove();

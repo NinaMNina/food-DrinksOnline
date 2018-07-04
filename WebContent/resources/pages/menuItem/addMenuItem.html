@@ -1,0 +1,60 @@
+<div>
+	<h3 class='h3Restaurant'>Adding Menu Item</h3>
+	<table width='100%' class='tableRestaurant'>
+		<tr>
+			<td width='20%'></td>
+			<th width='10%'>Add to Restaurant:</th>
+			<td width='30%'>
+				<select size='5' ng-model="ami.idRestorana" >
+			      <option ng-repeat="o in sviRestorani" ng-value="o.id">{{o.naziv}} - {{o.adresa}}</option>
+			    </select>
+			</td>
+			<td width='40%'></td>
+		</tr>
+		<tr>
+			<td></td>
+			<th>type:</th>
+			<td>
+				<select ng-model="vrsta">
+					<option value='pice'>drink</option>
+					<option value='jelo'>food</option>
+				</select>
+			</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<th>name:</th>
+			<td><input type='text' ng-model="ami.naziv" id='name' size="40"></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<th>description:</th>
+			<td><textarea id='description' ng-model="ami.opis" rows="4" cols="50"></textarea></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<th>price:</th>
+			<td><input type='number' id='cena' ng-model="ami.cena" size="6"></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<th>quantity:</th>
+			<td><input type='number' id='cena' ng-model="ami.kolicina" size="6"></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td height='5px'></td>
+		</tr>
+		<tr>
+			<td></td>
+			<th></th>
+			<td ng-hide='showMessage'><button ng-click="mic.addMenuItem()">Save Item</button></td>
+			<td ng-show='showMessage'>{{secretMessage}}</td>
+			<td></td>
+		</tr>
+	</table>
+</div>

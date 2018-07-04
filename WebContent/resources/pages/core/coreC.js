@@ -157,7 +157,7 @@
         	$scope.vehicle.edit=false;
         	$scope.vehicle.del=false;
         	$scope.users.change=false;
-        	$location.path('/addItem');
+        	$location.path('/addMenuItem');
         }
         cc.editItem = function(){
         	if($scope.item.edit == true ){
@@ -173,7 +173,7 @@
         	$scope.vehicle.edit=false;
         	$scope.vehicle.del=false;
         	$scope.users.change=false;
-        	$location.path('/editItem');
+        	$location.path('/editMenuItem');
         }
         cc.delItem = function(){
         	if($scope.item.del == true ){
@@ -189,7 +189,7 @@
         	$scope.vehicle.edit=false;
         	$scope.vehicle.del=false;
         	$scope.users.change=false;
-        	$location.path('/deleteItem');
+        	$location.path('/delMenuItem');
         }
         cc.addVehicle = function(){
         	if($scope.vehicle.add == true ){

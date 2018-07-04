@@ -3,9 +3,11 @@ package controller;
 import java.util.List;
 
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -52,6 +54,21 @@ public class RestoranController {
 		izmeni(r);
 		JsonSerializer.saveData();
 		return Response.ok(r, MediaType.APPLICATION_JSON).build();
+	}
+	@DELETE
+	@Path("/brisi/{id}")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response brisiRestoran(@PathParam("id") int id) {	
+	//	k.setDatumRegistracije(new Date(k.getDatumRegistracije()));
+		System.out.println("tu sam i brisem restoran");
+		List<Restoran> r = Data.getInstance().getRestorani();
+		for(int index=0; index<r.size(); index++){
+			if(r.get(index).getId()==id)
+				r.remove(index);
+		}
+		JsonSerializer.saveData();
+		return Response.ok(null, MediaType.APPLICATION_JSON).build();
 	}
 
 	

@@ -3,7 +3,9 @@ package jsonData;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+import bean.Jelo;
 import bean.Korisnik;
+import bean.Pice;
 import bean.Restoran;
 import bean.Vozilo;
 
@@ -53,7 +55,37 @@ public class Data implements Serializable{
 	public Data() {
 
 	}
-	
+
+	public int getJelaLength() {
+		int retVal=0;
+		for(Restoran r0 : restorani){
+			retVal+=r0.getJela().size();
+		}
+		return retVal;
+	}
+	public int getPicaLength() {
+		int retVal=0;
+		for(Restoran r0 : restorani){
+			retVal+=r0.getPica().size();
+		}
+		return retVal;
+	}
+
+	public void addJelo(Jelo j) {
+		for(Restoran r0 : restorani){
+			if(r0.getId()==j.getIdRestorana()){
+				r0.getJela().add(j);
+			}
+		}
+	}
+
+	public void addPice(Pice j) {
+		for(Restoran r0 : restorani){
+			if(r0.getId()==j.getIdRestorana()){
+				r0.getPica().add(j);
+			}
+		}
+	}
 	
 	
 	
