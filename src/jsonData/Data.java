@@ -91,6 +91,14 @@ public class Data implements Serializable{
 			}
 		}
 	}
+	@JsonIgnore
+	public int getPorudzbinaLength() {
+		int retVal=0;
+		for(Korisnik k0 : korisnici){
+			retVal+=k0.getPorudzbine().size();
+		}
+		return retVal;
+	}
 	
 	
 	

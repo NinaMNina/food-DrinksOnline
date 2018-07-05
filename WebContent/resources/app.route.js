@@ -91,6 +91,18 @@
             templateUrl: 'resources/pages/changeType/changeType.html',
             controller: 'changeTypeController',
             controllerAs: 'ctc'
+        })
+        .state('core.byCathegory', {
+            url: 'byCathegory',
+            templateUrl: 'resources/pages/byCathegory/byCathegory.html',
+            controller: 'byCathegoryController',
+            controllerAs: 'bcc'
+        })
+        .state('core.confirmFinalOrder', {
+            url: 'confirmFinalOrder',
+            templateUrl: 'resources/pages/confirmFinalOrder/confirmFinalOrder.html',
+            controller: 'confirmFinalOrderController',
+            controllerAs: 'cfc'
         });
 
 

@@ -12,7 +12,7 @@ body {
     height: 100%;
     overflow: auto;
     text-align: left;
-    top: 120px;
+    top: 150px;
 }
 .aImgCore{
 	width:100%;
@@ -25,8 +25,17 @@ body {
     color: #000;
     padding: 8px 16px;
     text-decoration: none;
+    cursor: pointer;
 }
-
+.RestName{
+	display: block;
+    color: #800000;
+    padding: 8px 16px;
+    text-decoration: none;
+    font-size: large;
+    font-weight: bold;
+    cursor: pointer;
+}
 .aCoreActiv {
     display: block;
     padding: 8px 16px;
@@ -143,4 +152,7 @@ input:checked + .slider:before {
 }
 .piceEdit{
 	background-color: #aad5ff;
+}
+.rightCore{
+	
 }

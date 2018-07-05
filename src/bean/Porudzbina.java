@@ -1,6 +1,7 @@
 package bean;
 
 import java.io.Serializable;
+import java.sql.Date;
 import java.sql.Time;
 import java.util.ArrayList;
 
@@ -12,7 +13,7 @@ public class Porudzbina implements Serializable{
 	private int idRestorana;
 	private String nazivRestorana;
 	private String napomena;
-	private Time vreme;
+	private Date vreme;
 	private StatusPorudzbine status;
 	private String dostavljac;
 	private ArrayList<Stavka> stavke;
@@ -31,7 +32,7 @@ public class Porudzbina implements Serializable{
 	public String getNapomena() {
 		return napomena;
 	}
-	public Time getVreme() {
+	public Date getVreme() {
 		return vreme;
 	}
 	public StatusPorudzbine getStatus() {
@@ -58,7 +59,7 @@ public class Porudzbina implements Serializable{
 	public void setNapomena(String napomena) {
 		this.napomena = napomena;
 	}
-	public void setVreme(Time vreme) {
+	public void setVreme(Date vreme) {
 		this.vreme = vreme;
 	}
 	public void setStatus(StatusPorudzbine status) {

@@ -1,0 +1,57 @@
+<div ng-show='isCath'>
+	<h3 class='h3Restaurant'>{{cath}}</h3>
+	<table width='100%' class='tableRestaurant'>
+		<tr ng-repeat='r in restorani'>
+			<th><a  class='RestName' ng-click='bcc.showRestaurantsMenu(r)'>{{r.naziv}}</a></th>
+			<th>{{r.adresa}}</th>
+			<th ng-hide='user.omiljeno.indexOf(r.id) >= 0'><button ng-click='bcc.addToFavs(r.id)' class='buttonCore'>save</button></th>
+		</tr>
+	</table>
+</div>
+<div ng-hide='isCath'>
+	<h3 class='h3Restaurant'>{{rest.naziv}}</h3>
+	<table width='100%' class='tableRestaurant'>
+		<tr ng-repeat='r in restorani'>
+			<td width='50%'>
+				<div>
+					<table>
+						<tr ng-repeat='jelo in rest.jela'>
+							<td>
+								<span class='RestName'>{{jelo.naziv}}</span><br/>
+								description: {{jelo.opis}}<br/>
+								weight: {{jelo.grama}} g <br/>
+								price: {{jelo.cena}}<br/>
+								<input type="number" ng-model='jelo.kolicina' value='0'/>
+							</td>
+						</tr>
+					</table>
+				</div>
+			</td>
+			<td width='50%'>
+				<div>
+					<table>
+						<tr ng-repeat='pice in rest.pica'>
+							<td>
+								<span class='RestName'>{{pice.naziv}}</span><br/>
+								description: {{pice.opis}}<br/>
+								weight: {{pice.mililitara}} ml <br/>
+								price: {{pice.cena}}<br/>
+								<input type="number" ng-model='pice.kolicina'/>
+							</td>
+						</tr>
+					</table>
+				</div>
+			</td>
+		</tr>
+	</table>
+	<table>
+		<tr>
+			<td width='60%'>
+				<textarea rows="4" cols="60" ng-model='napomena' placeholder='type any reference or special request if you have...'></textarea>
+			</td>
+			<td width='40%'>
+				<button ng-click='bcc.makeOrder()'>make order</button>
+			</td>
+		</tr>
+	</table>
+</div>

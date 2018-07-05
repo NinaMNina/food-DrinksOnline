@@ -14,7 +14,7 @@
         	var tryUser = $cookies.get('user');
         	if(tryUser!=undefined){
         		var user = JSON.parse(tryUser);
-        		$rootScope.logged = true;	
+        		$rootScope.logged = true;        		
         	}
 
 
@@ -273,6 +273,34 @@
         	$rootScope.logged = false;
         	$location.path('/home');
         	
+        }
+        cc.showFoodHomeMade = function(){
+        	$rootScope.foodType = "hm";
+        	$location.path('/byCathegory');
+        }
+        cc.showFoodBarbique= function(){
+        	$rootScope.foodType = "bbq";
+        	$location.path('/byCathegory');
+        }
+        
+        cc.showFoodPizza= function(){
+        	$rootScope.foodType = "p";
+        	$location.path('/byCathegory');
+        }
+        
+        cc.showFoodBakery= function(){
+        	$rootScope.foodType = "b";
+        	$location.path('/byCathegory');
+        }
+        
+        cc.showFoodChinese= function(){
+        	$rootScope.foodType = "c";
+        	$location.path('/byCathegory');
+        }
+        
+        cc.showFoodIndian= function(){
+        	$rootScope.foodType = "i";
+        	$location.path('/byCathegory');
         }
     }
 })();

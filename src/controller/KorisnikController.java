@@ -12,12 +12,12 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.Response.Status;
 
 import jsonData.Data;
 import jsonData.JsonSerializer;
 import DTO.KorisnikDTO;
 import bean.Korisnik;
-import bean.Restoran;
 import bean.enums.Uloga;
 
 @Path("/korisnik")
@@ -32,6 +32,21 @@ public class KorisnikController {
 		List<Korisnik> r = Data.getInstance().getKorisnici();
 		JsonSerializer.saveData();
 		return Response.ok(r, MediaType.APPLICATION_JSON).build();
+	}
+	@GET
+	@Path("/{username}")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response getKorisnik(@PathParam("username") String username) {	
+	//	k.setDatumRegistracije(new Date(k.getDatumRegistracije()));
+		System.out.println("tu sam i dobavnljam sve korisnike");
+		List<Korisnik> r = Data.getInstance().getKorisnici();
+		for(Korisnik k0 : r){
+			if(k0.getUsername().equals(username))
+				return Response.ok(k0, MediaType.APPLICATION_JSON).build();
+				
+		}
+		return Response.status(Status.BAD_REQUEST).build();
 	}
 	@POST
 	@Path("/kreiraj")
@@ -76,10 +91,25 @@ public class KorisnikController {
 		for(Korisnik k0 : korisnici){
 			if(k0.getUsername().equals(username)){
 				k0.setUloga(Uloga.REG);
+				JsonSerializer.saveData();
 				return Response.ok(k0, MediaType.APPLICATION_JSON).build();					
 			}
 		}
 		return Response.ok(null, MediaType.APPLICATION_JSON).build();
+	}
+	@PUT
+	@Path("/{username}/{id}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response addOmiljno(@PathParam("username") String username, @PathParam("id") int id) {		
+		ArrayList<Korisnik> korisnici = Data.getInstance().getKorisnici();
+		for(Korisnik k0 : korisnici){
+			if(k0.getUsername().equals(username)){
+				k0.getOmiljeno().add(id);
+				JsonSerializer.saveData();
+				return Response.ok(k0, MediaType.APPLICATION_JSON).build();					
+			}
+		}
+		return Response.status(Status.BAD_REQUEST).build();
 	}
 	@PUT
 	@Path("/dost/{username}")
@@ -91,6 +121,7 @@ public class KorisnikController {
 		for(Korisnik k0 : korisnici){
 			if(k0.getUsername().equals(username)){
 				k0.setUloga(Uloga.DOST);
+				JsonSerializer.saveData();
 				return Response.ok(k0, MediaType.APPLICATION_JSON).build();					
 			}
 		}
@@ -106,6 +137,7 @@ public class KorisnikController {
 		for(Korisnik k0 : korisnici){
 			if(k0.getUsername().equals(username)){
 				k0.setUloga(Uloga.ADMIN);
+				JsonSerializer.saveData();
 				return Response.ok(k0, MediaType.APPLICATION_JSON).build();					
 			}
 		}

@@ -18,6 +18,7 @@ import jsonData.JsonSerializer;
 import bean.Jelo;
 import bean.Pice;
 import bean.Restoran;
+import bean.enums.Kategorija;
 
 @Path("/restoran")
 public class RestoranController {
@@ -58,6 +59,45 @@ public class RestoranController {
 		JsonSerializer.saveData();
 		for(int i=0; i<r.size(); i++){
 			if(r.get(i).isActiv()){
+				r0.add(r.get(i));
+			}
+		}
+		return Response.ok(r0, MediaType.APPLICATION_JSON).build();
+	}
+	@GET
+	@Path("/{c}")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response restoraniPoKategoriji(@PathParam("c") String c) {	
+	//	k.setDatumRegistracije(new Date(k.getDatumRegistracije()));
+		System.out.println("tu sam i dobavnljam restorane po kategoriji");
+		List<Restoran> r = Data.getInstance().getRestorani();
+		ArrayList<Restoran> r0 = new ArrayList<Restoran>();
+		Kategorija kk = null;
+		switch(c){
+			case "hc":
+				kk=Kategorija.DOMACA;
+				break;
+			case "bbq":
+				kk=Kategorija.ROSTILJ;
+				break;
+			case "p":
+				kk=Kategorija.PICERIJA;
+				break;
+			case "i":
+				kk=Kategorija.INDIJSKA;
+				break;
+			case "k":
+				kk=Kategorija.KINESKA;
+				break;
+			case "b":
+				kk=Kategorija.POSLASTICARNICA;
+				break;
+			default: break;
+		}
+			
+		for(int i=0; i<r.size(); i++){
+			if(r.get(i).isActiv() && r.get(i).getKategorija().equals(kk)){
 				r0.add(r.get(i));
 			}
 		}
