@@ -1,0 +1,63 @@
+<div>
+	<h3 class='h3Restaurant'>Adding Vehicle</h3>
+	<table width='100%' class='tableRestaurant'>
+		<tr>
+			<td></td>
+			<th>made by:</th>
+			<td><input type='text' ng-model="aveh.marka" id='marka' size="40"></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<th>model:</th>
+			<td><input type='text' ng-model="aveh.model" id='model' size="40"></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<th>type:</th>
+			<td>
+				<select ng-model="tipVozila">
+					<option value='BICIKL'>bicycle</option>
+					<option value='SKUTER'>motor-bike</option>
+					<option value='AUTO'>car</option>
+				</select>
+			</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<th>registry licence:</th>
+			<td><input type='text' ng-model="aveh.registracionaOznaka" id='registracionaOznaka' size="40"></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<th>year of production:</th>
+			<td><input type='text' ng-model="aveh.godiste" id='godiste' size="40"></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<th>additional*:</th>
+			<td><textarea id='napomena' ng-model="aveh.napomena" rows="4" cols="50"></textarea></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td height='5px'></td>
+		</tr>
+		<tr>
+			<td></td>
+			<th></th>
+			<td ng-hide='showMessage'><button ng-click="vc.addVozilo()">Save Vehicle</button></td>
+			<td ng-show='showMessage'>{{secretMessage}}</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<th></th>
+			<td>*not necessery</td>
+			<td></td>
+		</tr>
+	</table>
+</div>

@@ -30,19 +30,19 @@
 						<th width='10%'>weight/volume</th>
 						<th width='10%'></td>
 					</tr>	
-					<tr ng-repeat='jelo in rest.jela' class='jeloEdit'>
-						<td>{{jelo.naziv}}</td>
-						<td>{{jelo.opis}}</td>
-						<td>{{jelo.cena}}</td>
-						<td>{{jelo.grama}} g</td>
-						<td><button class='buttonRest' ng-click='mic.doEditingJelo(jelo)'>edit item</button></td>
-					</tr>		
+					<tr ng-repeat='jelo in rest.jela' class='jeloEdit'><div ng-show='jelo.activ'>
+						<td ng-show='jelo.activ'>{{jelo.naziv}}</td>
+						<td ng-show='jelo.activ'>{{jelo.opis}}</td>
+						<td ng-show='jelo.activ'>{{jelo.cena}}</td>
+						<td ng-show='jelo.activ'>{{jelo.grama}} g</td>
+						<td ng-show='jelo.activ'><button class='buttonRest' ng-click='mic.doEditingJelo(jelo)'>edit item</button></td>
+					</div></tr>		
 					<tr ng-repeat='pice in rest.pica' class='piceEdit'>
-						<td>{{pice.naziv}}</td>
-						<td>{{pice.opis}}</td>
-						<td>{{pice.cena}}</td>
-						<td>{{pice.mililitara}} ml</td>
-						<td><button class='buttonRest' ng-click='mic.doEditingPice(pice)'>edit item</button></td>
+						<td ng-show='pice.activ'>{{pice.naziv}}</td>
+						<td ng-show='pice.activ'>{{pice.opis}}</td>
+						<td ng-show='pice.activ'>{{pice.cena}}</td>
+						<td ng-show='pice.activ'>{{pice.mililitara}} ml</td>
+						<td ng-show='jelo.activ'><button class='buttonRest' ng-click='mic.doEditingPice(pice)'>edit item</button></td>
 					</tr>				
 				</table>
 			</td>

@@ -7,6 +7,7 @@ import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -15,22 +16,19 @@ import javax.ws.rs.core.Response;
 
 import jsonData.Data;
 import jsonData.JsonSerializer;
-import bean.Jelo;
-import bean.Pice;
-import bean.Restoran;
+import bean.Vozilo;
 
-@Path("/restoran")
-public class RestoranController {
-
+@Path("/vozilo")
+public class VoziloController {
 	@POST
 	@Path("/dodaj")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response dodajRestoran(Restoran r) {	
+	public Response dodajVozilo(Vozilo r) {	
 	//	k.setDatumRegistracije(new Date(k.getDatumRegistracije()));
-		System.out.println("tu sam i kreiram restoran");
-		r.setId(Data.getInstance().getRestorani().size());
-		Data.getInstance().getRestorani().add(r);
+		System.out.println("tu sam i kreiram Vozilo");
+		r.setId(Data.getInstance().getVozila().size());
+		Data.getInstance().getVozila().add(r);
 		JsonSerializer.saveData();
 		return Response.ok(r, MediaType.APPLICATION_JSON).build();
 	}
@@ -39,10 +37,10 @@ public class RestoranController {
 	@Path("/svisvi")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response basSviRestorani() {	
+	public Response basSvaVozila() {	
 	//	k.setDatumRegistracije(new Date(k.getDatumRegistracije()));
-		System.out.println("tu sam i dobavnljam sve sve restorane");
-		List<Restoran> r = Data.getInstance().getRestorani();
+		System.out.println("tu sam i dobavnljam sva sva Vozila");
+		List<Vozilo> r = Data.getInstance().getVozila();
 		JsonSerializer.saveData();
 		return Response.ok(r, MediaType.APPLICATION_JSON).build();
 	}
@@ -50,11 +48,11 @@ public class RestoranController {
 	@Path("/svi")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response sviRestorani() {	
+	public Response svaVozila() {	
 	//	k.setDatumRegistracije(new Date(k.getDatumRegistracije()));
-		System.out.println("tu sam i dobavnljam restorane");
-		List<Restoran> r = Data.getInstance().getRestorani();
-		ArrayList<Restoran> r0 = new ArrayList<Restoran>();
+		System.out.println("tu sam i dobavnljam Vozila");
+		List<Vozilo> r = Data.getInstance().getVozila();
+		ArrayList<Vozilo> r0 = new ArrayList<Vozilo>();
 		JsonSerializer.saveData();
 		for(int i=0; i<r.size(); i++){
 			if(r.get(i).isActiv()){
@@ -63,51 +61,39 @@ public class RestoranController {
 		}
 		return Response.ok(r0, MediaType.APPLICATION_JSON).build();
 	}
-	@POST
+	@PUT
 	@Path("/izmeni")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response izmeniRestoran(Restoran r) {	
+	public Response izmeniVozilo(Vozilo v) {	
 	//	k.setDatumRegistracije(new Date(k.getDatumRegistracije()));
-		System.out.println("tu sam i menjam restoran");
-		izmeni(r);
+		System.out.println("tu sam i menjam Vozilo");
+		izmeni(v);
 		JsonSerializer.saveData();
-		return Response.ok(r, MediaType.APPLICATION_JSON).build();
+		return Response.ok(v, MediaType.APPLICATION_JSON).build();
 	}
 	@DELETE
 	@Path("/brisi/{id}")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response brisiRestoran(@PathParam("id") int id) {	
+	public Response brisiVozilo(@PathParam("id") int id) {	
 	//	k.setDatumRegistracije(new Date(k.getDatumRegistracije()));
-		System.out.println("tu sam i brisem restoran");
-		List<Restoran> r = Data.getInstance().getRestorani();
+		System.out.println("tu sam i brisem Vozilo");
+		List<Vozilo> r = Data.getInstance().getVozila();
 		for(int index=0; index<r.size(); index++){
 			if(r.get(index).getId()==id){
 				r.get(index).setActiv(false);
-				setNotActiv(r.get(index));
 			}
 		}
 		JsonSerializer.saveData();
 		return Response.ok(null, MediaType.APPLICATION_JSON).build();
 	}
 
-	
-	
-	private void setNotActiv(Restoran r) {
-		for(Jelo j : r.getJela()){
-			j.setActiv(false);
-		}
-		for(Pice p : r.getPica()){
-			p.setActiv(false);
-		}
-	}
-
-	private void izmeni(Restoran r) {
-		List<Restoran> all = Data.getInstance().getRestorani();
+	private void izmeni(Vozilo v) {
+		List<Vozilo> all = Data.getInstance().getVozila();
 		for(int i=0; i<all.size(); i++){
-			if(all.get(i).getId()==r.getId()){
-				Data.getInstance().getRestorani().set(i, r);
+			if(all.get(i).getId()==v.getId()){
+				Data.getInstance().getVozila().set(i, v);
 				return;
 			}
 		}

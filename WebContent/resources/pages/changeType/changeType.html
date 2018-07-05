@@ -1,0 +1,33 @@
+<div>
+	<h3 class='h3Restaurant'>Change User Type</h3>
+	<div ng-show='showMessage'>{{secretMessage}}</div>
+	<table width='100%' class='tableRestaurant'>
+		<tr>
+			<th width='15%'>username</th>
+			<th width='15%'>name</th>
+			<th width='15%'>email</th>
+			<th width='10%'>member since</th>
+			<th width='45%'></th>
+		</tr>
+		<tr ng-repeat='u in users'>
+			<td>{{u.username}}</td>
+			<td>{{u.ime}} &nbsp; {{u.prezime}}</td>
+			<td>{{u.email}}</td>
+			<td>{{u.datumRegistracije}}</td>
+			<td ng-hide='u.username==loggedAdmin'>
+				<label>
+				    <input type="radio" ng-model="u.uloga" value="REG" ng-change="ctc.changeToReg(u)">
+				    regular user
+			 	 </label>&nbsp;&nbsp;
+				<label>
+				    <input type="radio" ng-model="u.uloga" value="DOST" ng-change="ctc.changeToDost(u)">
+				    delivery
+			 	 </label>&nbsp;&nbsp;
+				<label>
+				    <input type="radio" ng-model="u.uloga" value="ADMIN" ng-change="ctc.changeToAdmin(u)">
+				    admin
+			 	 </label>&nbsp;&nbsp;
+			</td>
+		</tr>
+	</table>
+</div>

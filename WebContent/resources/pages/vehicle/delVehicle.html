@@ -1,0 +1,30 @@
+<div>
+	<h3 class='h3Restaurant'>Delete Menu Item</h3>
+	<table width='100%' class='tableRestaurant'>
+		<tr>
+			<th width='5%'>id</th>
+			<th width='10%'>made by</th>
+			<th width='10%'>model</th>
+			<th width='10%'>type</th>
+			<th width='10%'>registry</th>
+			<th width='10%'>year of prod.</th>
+			<th width='30%'>additional</th>
+			<th width='15%'></th>
+		</tr>
+		<tr ng-repeat='v in basSvaVozila'>
+			<td>{{v.id}}</td>
+			<td>{{v.marka}}</td>
+			<td>{{v.model}}</td>
+			<td>{{v.tip}}</td>
+			<td>{{v.registracionaOznaka}}</td>
+			<td>{{v.godiste}}</td>
+			<td>{{v.napomena}}</td>
+			<td>
+				<label class="switch">
+			  		<input type="checkbox" ng-click='vc.deleteVozilo(v)' ng-model='v.activ' ng-disabled="!v.activ">
+					<span class="slider round"></span>
+				</label>delete it
+			</td>	
+		</tr>
+	</table>
+</div>

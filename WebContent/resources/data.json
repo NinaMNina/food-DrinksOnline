@@ -1,5 +1,1 @@
-{
-	"korisnici":[],
-	"restorani":[],
-	"vozila": []
-}
+{"korisnici":[{"username":"a","pass":"a","ime":"a","prezime":"a","telefon":"243","email":"a@a","uloga":"ADMIN","datumRegistracije":1529253576010,"porudzbine":[],"omiljeno":[],"dostavlja":[],"vozi":-1}],"restorani":[{"id":1,"naziv":"minuta","adresa":"Buluvar Oslobodjenja 423","kategorija":"ROSTILJ","activ":true,"pica":[],"jela":[{"id":1,"idRestorana":1,"naziv":"agentdas","opis":"dasdsads","cena":43,"grama":432,"activ":false}]},{"id":2,"naziv":"Caribic","adresa":"Bulevar Oslobodjenja 434","kategorija":"INDIJSKA","activ":true,"pica":[{"id":2,"idRestorana":2,"naziv":"Coke","opis":"flknsd vsdv lkskl cvd","cena":4343,"mililitara":3,"activ":true}],"jela":[]}],"vozila":[]}

@@ -48,13 +48,23 @@
             		  $scope.opcije.push(response.data[i]);
             		  var o = response.data[i];
             		  setOCategory(o);
-        		  	  $scope.opcijeBrisanje.push(o);
         		  	  $scope.odabranEdit=o;
             	  }
               }, function errorCallback(response) {
             	  
                });
-        	
+        	$http({
+                method: 'GET',
+                url: 'rest/restoran/svisvi'
+              }).then(function successCallback(response) {
+            	  for(var i=0; i<response.data.length; i++){
+            		  var o = response.data[i];
+            		  setOCategory(o);
+        		  	  $scope.opcijeBrisanje.push(o);
+            	  }
+              }, function errorCallback(response) {
+            	  
+               });
         	$scope.secretMessage="";
         	$scope.showMessage=false;
         };        

@@ -67,6 +67,30 @@
             templateUrl: 'resources/pages/menuItem/editMenuItem.html',
             controller: 'menuItemController',
             controllerAs: 'mic'
+        })
+        .state('core.addVehicle', {
+            url: 'addVehicle',
+            templateUrl: 'resources/pages/vehicle/addVehicle.html',
+            controller: 'vehicleController',
+            controllerAs: 'vc'
+        })
+        .state('core.editVehicle', {
+            url: 'editVehicle',
+            templateUrl: 'resources/pages/vehicle/editVehicle.html',
+            controller: 'vehicleController',
+            controllerAs: 'vc'
+        })
+        .state('core.delVehicle', {
+            url: 'delVehicle',
+            templateUrl: 'resources/pages/vehicle/delVehicle.html',
+            controller: 'vehicleController',
+            controllerAs: 'vc'
+        })
+        .state('core.changeType', {
+            url: 'changeType',
+            templateUrl: 'resources/pages/changeType/changeType.html',
+            controller: 'changeTypeController',
+            controllerAs: 'ctc'
         });
 
 

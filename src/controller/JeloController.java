@@ -47,14 +47,14 @@ public class JeloController {
 	@Path("/brisi/{id}")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response brisiRestoran(@PathParam("id") int id) {	
+	public Response brisiJelo(@PathParam("id") int id) {	
 	//	k.setDatumRegistracije(new Date(k.getDatumRegistracije()));
 		System.out.println("tu sam i brisem jelo");
 		List<Restoran> r = Data.getInstance().getRestorani();
 		for(Restoran r0 : r){
 			for(int index=0; index<r0.getJela().size(); index++){
 				if(r0.getJela().get(index).getId()==id){
-					r0.getJela().remove(index);
+					r0.getJela().get(index).setActiv(false);
 					JsonSerializer.saveData();
 					return Response.ok(MediaType.APPLICATION_JSON).build();
 				}

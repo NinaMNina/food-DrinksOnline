@@ -1,0 +1,98 @@
+<div ng-hide='isEdit'>
+	<h3 class='h3Restaurant'>Choose vehicle to edit</h3>
+	<table width='100%' class='tableRestaurant'>
+		<tr>
+			<th width='5%'>id</th>
+			<th width='10%'>made by</th>
+			<th width='10%'>model</th>
+			<th width='10%'>type</th>
+			<th width='10%'>registry</th>
+			<th width='10%'>year of prod.</th>
+			<th width='30%'>additional</th>
+			<th width='15%'></th>
+		</tr>
+		<tr ng-repeat='v in svaVozila'>
+			<td ng-show='v.activ'>{{v.id}}</td>
+			<td ng-show='v.activ'>{{v.marka}}</td>
+			<td ng-show='v.activ'>{{v.model}}</td>
+			<td ng-show='v.activ'>{{v.tip}}</td>
+			<td ng-show='v.activ'>{{v.registracionaOznaka}}</td>
+			<td ng-show='v.activ'>{{v.godiste}}</td>
+			<td ng-show='v.activ'>{{v.napomena}}</td>
+			<td ng-show='v.activ'><button class='buttonRest' ng-click='vc.doEditingVozilo(v)'>edit vehicle</button></td>	
+		</tr>
+	</table>
+</div>
+<div ng-show='isEdit'>
+	<h3 class='h3Restaurant'>Editing Vehicle</h3>
+	<table width='100%' class='tableRestaurant'>
+		<tr>
+			<td></td>
+			<th>made by:</th>
+			<td><input type='text' ng-model="eveh.marka" id='marka' size="40"></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<th>model:</th>
+			<td><input type='text' ng-model="eveh.model" id='model' size="40"></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<th>type:</th>
+			<td>
+				<select ng-model="eveh.tip">
+					<option value='BICIKL'>bicycle</option>
+					<option value='SKUTER'>motor-bike</option>
+					<option value='AUTO'>car</option>
+				</select>
+			</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<th>registry licence:</th>
+			<td><input type='text' ng-model="eveh.registracionaOznaka" id='registracionaOznaka' size="40"></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<th>year of production:</th>
+			<td><input type='text' ng-model="eveh.godiste" id='godiste' size="40"></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<th>additional*:</th>
+			<td><textarea id='napomena' ng-model="eveh.napomena" rows="4" cols="50"></textarea></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td height='5px'></td>
+		</tr>
+		<tr>
+			<td></td>
+			<th></th>
+			<td ng-hide='showMessage'><button ng-click="vc.editVozilo()">save changes</button></td>
+			<td ng-show='showMessage'>{{secretMessage}}</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<th></th>
+			<td ng-hide='showMessage'><button ng-click="vc.goBackToChoice()">Go back</button></td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td height='5px'></td>
+		</tr>
+		<tr>
+			<td></td>
+			<th></th>
+			<td>*not necessery</td>
+			<td></td>
+		</tr>
+	</table>
+</div>

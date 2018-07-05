@@ -237,7 +237,7 @@
         	$scope.vehicle.edit=false;
         	$scope.vehicle.del=true;
         	$scope.users.change=false;
-        	$location.path('/deleteVehicle');
+        	$location.path('/delVehicle');
         }
         cc.changeType = function(){
         	if($scope.users.change == true ){

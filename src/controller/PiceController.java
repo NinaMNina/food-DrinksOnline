@@ -47,14 +47,14 @@ public class PiceController {
 	@Path("/brisi/{id}")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response brisiRestoran(@PathParam("id") int id) {	
+	public Response brisiPice(@PathParam("id") int id) {	
 	//	k.setDatumRegistracije(new Date(k.getDatumRegistracije()));
 		System.out.println("tu sam i brisem Pice");
 		List<Restoran> r = Data.getInstance().getRestorani();
 		for(Restoran r0 : r){
 			for(int index=0; index<r0.getPica().size(); index++){
 				if(r0.getPica().get(index).getId()==id){
-					r0.getPica().remove(index);
+					r0.getPica().get(index).setActiv(false);
 					JsonSerializer.saveData();
 					return Response.ok(MediaType.APPLICATION_JSON).build();
 				}

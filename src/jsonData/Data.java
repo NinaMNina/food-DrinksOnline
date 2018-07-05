@@ -9,6 +9,8 @@ import bean.Pice;
 import bean.Restoran;
 import bean.Vozilo;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 public class Data implements Serializable{
 	private ArrayList<Korisnik> korisnici;
 	private ArrayList<Restoran> restorani;
@@ -55,7 +57,7 @@ public class Data implements Serializable{
 	public Data() {
 
 	}
-
+	@JsonIgnore
 	public int getJelaLength() {
 		int retVal=0;
 		for(Restoran r0 : restorani){
@@ -63,6 +65,7 @@ public class Data implements Serializable{
 		}
 		return retVal;
 	}
+	@JsonIgnore
 	public int getPicaLength() {
 		int retVal=0;
 		for(Restoran r0 : restorani){
@@ -71,6 +74,7 @@ public class Data implements Serializable{
 		return retVal;
 	}
 
+	@JsonIgnore
 	public void addJelo(Jelo j) {
 		for(Restoran r0 : restorani){
 			if(r0.getId()==j.getIdRestorana()){
@@ -79,6 +83,7 @@ public class Data implements Serializable{
 		}
 	}
 
+	@JsonIgnore
 	public void addPice(Pice j) {
 		for(Restoran r0 : restorani){
 			if(r0.getId()==j.getIdRestorana()){
