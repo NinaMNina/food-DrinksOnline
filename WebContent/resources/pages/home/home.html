@@ -17,7 +17,7 @@
 			<th><a  class='RestName' ng-click='hc.showRestaurantsMenu(r)'>{{r.naziv}}</a></th>
 			<th>{{r.adresa}}</th>
 			<th>{{r.kategorija}}</th>
-			<th ng-hide='user.omiljeno.indexOf(r.id)>=0 || logged'><button ng-click='hc.addToFavs(r.id)' class='buttonCore'>save</button></th>
+			<th ng-hide='user.omiljeno.indexOf(r.id)>=0 || !logged'><button ng-click='hc.addToFavs(r.id)' class='buttonCore'>save</button></th>
 		</tr>
 	</table>
 </div>
