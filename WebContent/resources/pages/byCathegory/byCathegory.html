@@ -16,12 +16,12 @@
 				<div>
 					<table>
 						<tr ng-repeat='jelo in rest.jela'>
-							<td>
+							<td class='jeloEdit'>
 								<span class='RestName'>{{jelo.naziv}}</span><br/>
 								description: {{jelo.opis}}<br/>
 								weight: {{jelo.grama}} g <br/>
-								price: {{jelo.cena}}<br/>
-								<input type="number" ng-model='jelo.kolicina' value='0'/>
+								price: {{jelo.cena}} RSD<br/>
+								<button ng-click='bcc.minus(jelo)'>-</button><input disabled type="text" size='2' ng-model='jelo.kolicina' value='0'/><button ng-click='bcc.plus(jelo)'>+</button>
 							</td>
 						</tr>
 					</table>
@@ -31,12 +31,12 @@
 				<div>
 					<table>
 						<tr ng-repeat='pice in rest.pica'>
-							<td>
+							<td class='piceEdit'>
 								<span class='RestName'>{{pice.naziv}}</span><br/>
 								description: {{pice.opis}}<br/>
 								weight: {{pice.mililitara}} ml <br/>
-								price: {{pice.cena}}<br/>
-								<input type="number" ng-model='pice.kolicina'/>
+								price: {{pice.cena}} RSD<br/>
+								<button ng-click='bcc.minus(pice)'>-</button><input disabled type="text" size='2' ng-model='pice.kolicina' value='0'/><button ng-click='bcc.plus(pice)'>+</button>
 							</td>
 						</tr>
 					</table>
@@ -46,12 +46,18 @@
 	</table>
 	<table>
 		<tr>
+			<td width='20%'></td>
 			<td width='60%'>
 				<textarea rows="4" cols="60" ng-model='napomena' placeholder='type any reference or special request if you have...'></textarea>
 			</td>
-			<td width='40%'>
+			<td width='20%'>
 				<button ng-click='bcc.makeOrder()'>make order</button>
 			</td>
+		</tr>
+		<tr>
+			<td></td>
+			<td>{{secretMessage}}</td>
+			<td></td>
 		</tr>
 	</table>
 </div>

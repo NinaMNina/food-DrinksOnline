@@ -1,6 +1,6 @@
 <div>
-	<h3>My Orders</h3>
-	<table  width='100%' class='tableRestaurant' ng-repeat='n in narudzbine'>
+	<h3>Deliveries:</h3>
+	<table  width='100%' class='tableRestaurant' ng-repeat='n in porudzbine'>
 		<tr>
 			<th class='jeloEdit' colspan='2'>
 				Order form: {{n.nazivRestorana}} 
@@ -53,6 +53,12 @@
 		</tr>
 		<tr>
 			<td height='50px' colspan='2'>
+			</td>
+		</tr>
+		<tr nh-hide='hasDelivery'>	
+			<td></td>
+			<td>
+				<button class='buttonCore' ng-click='gdc.takeDelivery(n)'>do delivery</button>
 			</td>
 		</tr>
 	</table>

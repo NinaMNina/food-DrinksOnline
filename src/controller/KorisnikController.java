@@ -18,6 +18,7 @@ import jsonData.Data;
 import jsonData.JsonSerializer;
 import DTO.KorisnikDTO;
 import bean.Korisnik;
+import bean.Porudzbina;
 import bean.enums.Uloga;
 
 @Path("/korisnik")
@@ -45,6 +46,24 @@ public class KorisnikController {
 			if(k0.getUsername().equals(username))
 				return Response.ok(k0, MediaType.APPLICATION_JSON).build();
 				
+		}
+		return Response.status(Status.BAD_REQUEST).build();
+	}
+	@GET
+	@Path("/dostavlja/{username}")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response getDostava(@PathParam("username") String username) {	
+		List<Korisnik> r = Data.getInstance().getKorisnici();
+		for(Korisnik k0 : r){
+			if(k0.getUsername().equals(username)){
+				Porudzbina p = Data.getInstance().getObavljamPorudzbinu(username);
+				if(p!=null)
+					return Response.ok(p, MediaType.APPLICATION_JSON).build();
+				else{
+					return Response.ok(null, MediaType.APPLICATION_JSON).build();
+				}
+			}				
 		}
 		return Response.status(Status.BAD_REQUEST).build();
 	}

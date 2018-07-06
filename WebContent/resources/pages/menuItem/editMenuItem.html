@@ -33,14 +33,14 @@
 					<tr ng-repeat='jelo in rest.jela' class='jeloEdit'><div ng-show='jelo.activ'>
 						<td ng-show='jelo.activ'>{{jelo.naziv}}</td>
 						<td ng-show='jelo.activ'>{{jelo.opis}}</td>
-						<td ng-show='jelo.activ'>{{jelo.cena}}</td>
+						<td ng-show='jelo.activ'>{{jelo.cena}} RSD</td>
 						<td ng-show='jelo.activ'>{{jelo.grama}} g</td>
 						<td ng-show='jelo.activ'><button class='buttonRest' ng-click='mic.doEditingJelo(jelo)'>edit item</button></td>
 					</div></tr>		
 					<tr ng-repeat='pice in rest.pica' class='piceEdit'>
 						<td ng-show='pice.activ'>{{pice.naziv}}</td>
 						<td ng-show='pice.activ'>{{pice.opis}}</td>
-						<td ng-show='pice.activ'>{{pice.cena}}</td>
+						<td ng-show='pice.activ'>{{pice.cena}} RSD</td>
 						<td ng-show='pice.activ'>{{pice.mililitara}} ml</td>
 						<td ng-show='jelo.activ'><button class='buttonRest' ng-click='mic.doEditingPice(pice)'>edit item</button></td>
 					</tr>				

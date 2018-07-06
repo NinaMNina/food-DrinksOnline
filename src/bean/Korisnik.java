@@ -6,6 +6,8 @@ import java.util.Date;
 
 import bean.enums.Uloga;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 public class Korisnik implements Serializable{
 	private String username;
 	private String pass;

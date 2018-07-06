@@ -19,6 +19,7 @@
         	$scope.isCath = true;
         	$scope.restorani = [];
         	$scope.napomena = "";
+        	$scope.secretMessage=""
         	$scope.cath = "HOME-MADE FOOD";
         	if($rootScope.foodType=="bbq")
         		$scope.cath = "BARBIQUE";
@@ -42,17 +43,27 @@
 	        	  
 	           });
         	var tryUser = $cookies.get('user');
-        	var user = JSON.parse(tryUser);
-        	$http({
-	            method: 'GET',
-	            url: 'rest/korisnik/'+user.username
-	          }).then(function successCallback(response) {
-	          		$scope.user = response.data;
-	          }, function errorCallback(response) {
-	        	  
-	           });
+        	if(tryUser!=undefined){
+	        	var user = JSON.parse(tryUser);
+	        	$http({
+		            method: 'GET',
+		            url: 'rest/korisnik/'+user.username
+		          }).then(function successCallback(response) {
+		          		$scope.user = response.data;
+		          }, function errorCallback(response) {
+		        	  
+		           });
+        	}
         };        
         init();
+        bcc.minus = function(jelo){
+        	if(jelo.kolicina==0)
+        		return;
+        	jelo.kolicina=jelo.kolicina-1;
+        }
+        bcc.plus = function(jelo){
+        	jelo.kolicina=jelo.kolicina+1;
+        }
         bcc.showRestaurantsMenu = function(r){
         	$scope.rest = r;
         	$scope.isCath = false;
@@ -68,6 +79,11 @@
         	$rootScope.narudzbina.rest=$scope.rest;
         	$rootScope.narudzbina.napomena = $scope.napomena;
         	var tryUser = $cookies.get('user');
+        	if(tryUser==undefined || tryUSer==null){
+        		$scope.secretMessage = "Log in first and then make your order!";
+        		bcc.showResponse();
+        		return;
+        	}
         	var user = JSON.parse(tryUser);
         	$http({
 	            method: 'GET',
@@ -90,9 +106,8 @@
 	           });
         }
         bcc.showResponse = function(){
-           	$scope.showMessage=true;
            	$timeout(function() {
-    		    	  $scope.showMessage= false;
+    		    	  $scope.secretMessage= "";
     		      }, 3000);   
            }
         

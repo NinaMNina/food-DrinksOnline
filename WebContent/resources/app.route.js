@@ -115,6 +115,18 @@
             templateUrl: 'resources/pages/myOrders/myOrders.html',
             controller: 'myOrdersController',
             controllerAs: 'moc'
+        })
+        .state('core.getDelivery', {
+            url: 'getDelivery',
+            templateUrl: 'resources/pages/getDelivery/getDelivery.html',
+            controller: 'getDeliveryController',
+            controllerAs: 'gdc'
+        })        
+        .state('core.myDeliveries', {
+            url: 'myDeliveries',
+            templateUrl: 'resources/pages/myDeliveries/myDeliveries.html',
+            controller: 'myDeliveriesController',
+            controllerAs: 'mdc'
         });
 
 

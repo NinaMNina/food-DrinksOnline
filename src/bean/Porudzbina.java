@@ -16,6 +16,8 @@ public class Porudzbina implements Serializable{
 	private Date vreme;
 	private StatusPorudzbine status;
 	private String dostavljac;
+	private boolean activ;
+	private int cena;
 	private ArrayList<Stavka> stavke;
 	public int getId() {
 		return id;
@@ -70,6 +72,18 @@ public class Porudzbina implements Serializable{
 	}
 	public void setStavke(ArrayList<Stavka> stavke) {
 		this.stavke = stavke;
+	}
+	public boolean isActiv() {
+		return activ;
+	}
+	public int getCena() {
+		return cena;
+	}
+	public void setActiv(boolean activ) {
+		this.activ = activ;
+	}
+	public void setCena(int cena) {
+		this.cena = cena;
 	}
 	public Porudzbina() {
 	}

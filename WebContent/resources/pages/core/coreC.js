@@ -16,15 +16,18 @@
         		var user = JSON.parse(tryUser);
         		$rootScope.logged = true;        		
         	}
+        	$rootScope.showDostMenu = false;
 
-
-        	$rootScope.isAdmin = false;
-        	$rootScope.showMenu = true;
+        	$rootScope.showAdminMenu = false;
+        	$rootScope.showUserMenu = true;
+        	$rootScope.showSideMenu = true;
         	$scope.isHome = true;
         
         	$scope.isFavorite = false;
         	$scope.isProfile = false;
         	$scope.isOrders = false;
+        	$scope.isGetDelivery = true;
+        	$scope.isMyDeliveries = false;
         //admin deo
         	$scope.rest = {};
         	$scope.item = {};
@@ -42,19 +45,82 @@
         	$scope.users.change=false;
         	
         	if(user==undefined){
-	        	$rootScope.isAdmin = false;  
+	        	$rootScope.showAdminMenu = false;  
 	        	$rootScope.logged = false;
         	}
         	else if(user.uloga=="ADMIN"){
-	        	$rootScope.isAdmin = true;
-	        	$rootScope.showMenu = false;
+	        	$rootScope.showAdminMenu = true;
+	        	$rootScope.showUserMenu = false;
 	        	$rootScope.isHome = false;
 	        	$rootScope.addRest=true;
+	        	$scope.isGetDelivery =true;
+	        	$rootScope.showSideMenu = false;
 	        	$location.path('/addRestaurant');	        	
+        	}
+        	else if(user.uloga=="DOST"){
+	        	$rootScope.showAdminMenu = false;
+	        	$rootScope.showUserMenu = false;
+	        	$rootScope.isHome = false;
+	        	$rootScope.addRest=false;
+	        	$rootScope.showDostMenu=true;
+	        	$rootScope.showSideMenu = false;
+	        	$location.path('/getDelivery');
+	        	$http({
+		            method: 'GET',
+		            url: 'rest/korisnik/dostavlja/'+user.username
+		          }).then(function successCallback(response) {
+		        	  if(response.data!=null || response.data!=""){
+			        	  	var r = response.data;
+			        	  	$scope.porudzbina = response.data;
+			          		$scope.onDelivery = "to:" + r.korisnik + " from:" + r.nazivRestorana
+			          				+ " special:" +r.napomena + " price:" + r.cena + " RSD";		        		  
+		        	  }
+		        	  else{
+		        		  $scope.porudzbina = {};
+		        		  $scope.onDelivery = "";
+		        	  }
+		          }, function errorCallback(response) {
+		        	  
+		           });
         	}
         };        
         init();
         
+        cc.didMyDelivery = function(){
+        	var tryUser = $cookies.get('user');
+        	if(tryUser!=undefined){
+        		tryUser = JSON.parse(tryUser); 		
+        	}
+        	else{
+        		return;
+        	}
+        	$http({
+	            method: 'PUT',
+	            url: 'rest/porudzbina/done/'+$scope.porudzbina.id
+	          }).then(function successCallback(response) {
+	        	  	$scope.porudzbina = response.data;
+	          		$scope.onDelivery = {};
+	          }, function errorCallback(response) {
+	        	  
+	           });
+        }
+        
+        cc.goGetDelivery = function(){
+        	if($scope.isGetDelivery==true)
+        		return;
+        	$location.path('/getDelivery');	 
+        	$scope.isGetDelivery =true;  
+        	$scope.isProfile = false;  
+        	$scope.isMyDeliveries = false;
+        }
+        cc.goMyDeliveries = function(){
+        	if($scope.isMyDeliveries ==true)
+        		return;
+        	$location.path('/myDeliveries');	 
+        	$scope.isGetDelivery =false;  
+        	$scope.isProfile = false;  
+        	$scope.isMyDeliveries = true;
+        }
         cc.goHome = function(){
         	if($scope.isHome == true ){
         		return;
@@ -93,6 +159,8 @@
         	$scope.isFavorite = false;
         	$scope.isProfile = true;
         	$scope.isOrders = false;
+        	$scope.isGetDelivery =false;
+        	$scope.isMyDeliveries = false;
         	$location.path('/profile');
         }
         cc.addRest = function(){
@@ -256,19 +324,20 @@
         	$location.path('/changeType');
         }
         cc.signUp = function(){
-        	$rootScope.showMenu = false;
+        	$rootScope.showUserMenu = false;
         	$location.path('/createAccount');
         	
         }
         cc.signIn = function(){
-        	$rootScope.showMenu = false;
+        	$rootScope.showUserMenu = false;
+        	$rootScope.showSideMenu = false;
         	$location.path('/signIn');
         	
         }
         cc.logOut = function(){
         	$cookies.remove('user');
-        	$rootScope.isAdmin = false;
-        	$rootScope.showMenu = true;
+        	$rootScope.showAdminMenu = false;
+        	$rootScope.showUserMenu = true;
         	$rootScope.isHome = false;
         	$rootScope.logged = false;
         	$location.path('/home');

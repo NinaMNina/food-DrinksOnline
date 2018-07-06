@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import bean.Jelo;
 import bean.Korisnik;
 import bean.Pice;
+import bean.Porudzbina;
 import bean.Restoran;
 import bean.Vozilo;
 
@@ -99,7 +100,18 @@ public class Data implements Serializable{
 		}
 		return retVal;
 	}
-	
+
+	@JsonIgnore
+	public Porudzbina getObavljamPorudzbinu(String un) {
+		Porudzbina ret = null;
+		for(Korisnik k : korisnici){
+			for(Porudzbina p0 : k.getPorudzbine()){
+				if(p0.getDostavljac().equals(un))
+					return p0;
+			}
+		}
+		return ret;
+	}
 	
 	
 }

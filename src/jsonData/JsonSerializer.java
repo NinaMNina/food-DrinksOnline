@@ -13,12 +13,8 @@ public class JsonSerializer {
         Data f = null;
         String path = (System.getProperty("user.dir")+"/data.json");
         File currDir = new File(".");
-        String path0 = currDir.getAbsolutePath();
-        path0+="/WebContent/resources/data.json";
         
         System.out.println(path);
-        System.out.println("------------------------------------------------------------");
-        System.out.println(path0);
         System.out.println("------------------------------------------------------------");
         try {
             path = path.replace('\\', '/');

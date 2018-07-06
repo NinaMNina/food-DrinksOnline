@@ -17,7 +17,7 @@
 <div>
 	<table width='100%'>
 		<tr width='100%'>
-			<th width='20%'  ng-show='showMenu'>
+			<th width='20%'  ng-show='showUserMenu'>
 				<ul class='ulCore'>
 				  <li ng-hide='isHome'><a class="aCore" href="" ng-click='cc.goHome()'>Home</a></li>
 				  <li ng-show='isHome'><a class="aCoreActiv" href="" ng-click='cc.goHome()'>Home</a></li>
@@ -29,7 +29,23 @@
 				  <li ng-show='isProfile'><a class="aCoreActiv" href="" ng-click='cc.goProfile()'>Profile</a></li>
 				</ul>
 			</th>
-			<th width='20%'  ng-show='isAdmin'>
+			<th width='20%'  ng-show='showDostMenu'>
+				<ul class='ulCore'>
+				  <li ng-hide='isGetDelivery'><a class="aCore" href="" ng-click='cc.goGetDelivery()'>Get Delivery</a></li>
+				  <li ng-show='isGetDelivery'><a class="aCoreActiv" href="" ng-click='cc.goGetDelivery()'>Get Delivery</a></li>
+				   <li ng-hide='isMyDeliveries'><a class="aCore" href="" ng-click='cc.goMyDeliveries()'>My Deliveries</a></li>
+				  <li ng-show='isMyDeliveries'><a class="aCoreActiv" href="" ng-click='cc.goMyDeliveries()'>My Deliveries</a></li>
+				  <li ng-hide='isProfile'><a class="aCore" href="" ng-click='cc.goProfile()'>Profile</a></li>
+				  <li ng-show='isProfile'><a class="aCoreActiv" href="" ng-click='cc.goProfile()'>Profile</a></li>
+				</ul>
+				<span height='50px'></span><br/>
+				<div ng-show='hasDelivery'>
+					{{onDelivery}}<br/>
+					<button class='buttonCore' ng-click='cc.didMyDelivery()'>DELIVERED</button>					
+				</div>
+				
+			</th>
+			<th width='20%'  ng-show='showAdminMenu'>
 				<ul class='ulCore'>
 				  <li class='liCore'>Restaurant</li>
 				  <li ng-hide='addRest'><a class="aCore" href="" ng-click='cc.addRest()'>Add</a></li>
@@ -60,7 +76,7 @@
 			<td width='65%' class='viewCore'>
 				<ui-view></ui-view>
 			</td>
-			<td width='15%' class='rightCore' ng-hide='isAdmin'>
+			<td width='15%' class='rightCore' ng-show='showSideMenu'>
 				<div>
 					<table>
 						<tr><td><input type='text' ng-model='search'/></td></tr>

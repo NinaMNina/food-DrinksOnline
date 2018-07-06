@@ -10,8 +10,10 @@
         var sc = this;
 
         var init = function (){
-        	$rootScope.showMenu=false;
+        	$rootScope.showUserMenu=false;
         	$scope.showMessage=false;
+        	$rootScope.showSideMenu = false;
+        	$rootScope.showDostMenu = false;
         	$scope.secretMessage="";
         	$scope.user={"username": "",
         			"pass": "",
@@ -35,14 +37,22 @@
               	$rootScope.showMenu=true;
               	$location.path('/home'); 
         		$rootScope.logged = true;
+	        	$rootScope.showSideMenu = true;
               	if(response.data.uloga=='ADMIN'){
-                  	$rootScope.isAdmin=true;
-                  	$rootScope.showMenu=false;   
+                  	$rootScope.showAdminMenu=true;
+                  	$rootScope.showUserMenu=false;   
     	        	$rootScope.isHome = false; 
     	        	$rootScope.addRest=true;
+                  	$rootScope.showDostMenu=false; 
+    	        	$rootScope.showSideMenu = false;
                   	$location.path('/addRestaurant');           		
               	}
-            	  
+              	if(response.data.uloga=='DOST'){
+              		$rootScope.showDostMenu=true;
+              		$rootScope.showUserMenu=false;
+    	        	$rootScope.showSideMenu = false;
+    	        	$location.path('/getDelivery');
+              	}            	  
               }, function errorCallback(response) {
 	              	$scope.secretMessage="Something went wrong. Try it again.";  
 	        		$rootScope.logged = false;   

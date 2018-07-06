@@ -36,7 +36,9 @@
         			"vreme": new Date(),
         			"status": "PORUCENO",
         			"dostavljac": -1,
-        			"stavke": []
+        			"stavke": [],
+        			"activ": true,
+        			"cena": $scope.cena
         	};
         	for(var i=0; i<$rootScope.narudzbina.rest.jela.length; i++){
         		if($rootScope.narudzbina.rest.jela[i].kolicina>=0){

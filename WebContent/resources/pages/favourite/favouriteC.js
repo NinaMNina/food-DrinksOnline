@@ -29,6 +29,15 @@
         };        
         init();
         
+        favc.minus = function(jelo){
+        	if(jelo.kolicina==0)
+        		return;
+        	jelo.kolicina=jelo.kolicina-1;
+        }
+        favc.plus = function(jelo){
+        	jelo.kolicina=jelo.kolicina+1;
+        }
+        
         favc.goBack = function(){
         	$scope.rest = {};
         	$scope.isFav = true;

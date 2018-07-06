@@ -21,7 +21,7 @@
 								description: {{jelo.opis}}<br/>
 								weight: {{jelo.grama}} g <br/>
 								price: {{jelo.cena}}<br/>
-								<input type="number" ng-model='jelo.kolicina' value='0'/>
+								<button ng-click='favc.minus(jelo)'>-</button><input disabled type="text" size='2' ng-model='jelo.kolicina' value='0'/><button ng-click='favc.plus(jelo)'>+</button>
 							</td>
 						</tr>
 					</table>
@@ -36,7 +36,7 @@
 								description: {{pice.opis}}<br/>
 								weight: {{pice.mililitara}} ml <br/>
 								price: {{pice.cena}}<br/>
-								<input type="number" ng-model='pice.kolicina'/>
+								<button ng-click='favc.minus(pice)'>-</button><input disabled type="text" size='2' ng-model='pice.kolicina' value='0'/><button ng-click='favc.plus(pice)'>+</button>
 							</td>
 						</tr>
 					</table>
