@@ -17,11 +17,30 @@
         	if(tryUser!=undefined){
         		$scope.user = JSON.parse(tryUser);
         		$rootScope.logged = true;   
+        		$rootScope.showSideMenu=true;
         		$http({
     	            method: 'GET',
     	            url: 'rest/korisnik/'+$scope.user.username
     	          }).then(function successCallback(response) {
     	        	  $scope.user = response.data;
+    	        	  if($scope.user.uloga=='REG'){
+      	        		$rootScope.showSideMenu=true;
+      	        		$rootScope.showUserMenu=true;
+      	        		$rootScope.showDostMenu=false;
+      	        		$rootScope.showAdminMenu=false;
+    	        	  }
+    	        	  else if($scope.user.uloga=='ADMIN'){
+        	        		$rootScope.showSideMenu=false;
+          	        		$rootScope.showUserMenu=false;
+          	        		$rootScope.showDostMenu=false;
+          	        		$rootScope.showAdminMenu=true;
+        	        	  }
+    	        	  else {
+      	        		$rootScope.showSideMenu=true;
+    	        		$rootScope.showUserMenu=true;
+    	        		$rootScope.showDostMenu=true;
+    	        		$rootScope.showAdminMenu=false;
+      	        	  }
     	          }, function errorCallback(response) {
     	        	  
     	           });

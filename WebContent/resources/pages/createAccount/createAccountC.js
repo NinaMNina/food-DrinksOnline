@@ -13,6 +13,7 @@
         	$rootScope.showMenu=false;
         	$scope.showMessage=false;
         	$scope.message="";
+        	$rootScope.showSideMenu=false;
         	$scope.user = {
         		"username": "",
         		"pass": "",
