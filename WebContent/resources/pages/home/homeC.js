@@ -16,7 +16,15 @@
         	$scope.user = {};
         	if(tryUser!=undefined){
         		$scope.user = JSON.parse(tryUser);
-        		$rootScope.logged = true;       		
+        		$rootScope.logged = true;   
+        		$http({
+    	            method: 'GET',
+    	            url: 'rest/korisnik/'+$scope.user.username
+    	          }).then(function successCallback(response) {
+    	        	  $scope.user = response.data;
+    	          }, function errorCallback(response) {
+    	        	  
+    	           });
         	}
         	$scope.restorani = [];
         	$scope.isM=false;
@@ -33,6 +41,7 @@
 	          }, function errorCallback(response) {
 	        	  
 	           });
+    		
     		$http({
 	            method: 'GET',
 	            url: 'rest/restoran/top'
