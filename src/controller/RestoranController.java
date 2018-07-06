@@ -16,6 +16,7 @@ import javax.ws.rs.core.Response.Status;
 
 import jsonData.Data;
 import jsonData.JsonSerializer;
+import DTO.ArtikalDTO;
 import bean.Jelo;
 import bean.Korisnik;
 import bean.Pice;
@@ -37,7 +38,14 @@ public class RestoranController {
 		JsonSerializer.saveData();
 		return Response.ok(r, MediaType.APPLICATION_JSON).build();
 	}
-	
+	@GET
+	@Path("/top")
+	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
+	public Response topArtikli() {
+		List<ArtikalDTO> resp = Data.getInstance().getTop();
+		return Response.ok(resp, MediaType.APPLICATION_JSON).build();
+	}
 	@GET
 	@Path("/svisvi")
 	@Produces(MediaType.APPLICATION_JSON)

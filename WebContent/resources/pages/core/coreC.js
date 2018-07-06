@@ -17,6 +17,8 @@
         		user = JSON.parse(tryUser);
         		$rootScope.logged = true;        		
         	}
+        	$rootScope.search={};
+        	$rootScope.search.restorani=true;
         	$rootScope.currentDelivery = {};
         	$rootScope.showDostMenu = false;
 
@@ -27,7 +29,6 @@
         	$scope.isHome = true;
         
         	$scope.isFavorite = false;
-        	$scope.isProfile = false;
         	$scope.isOrders = false;
         	$scope.isGetDelivery = true;
         	$scope.isMyDeliveries = false;
@@ -50,13 +51,14 @@
         	$scope.order.edit=false;
         	$scope.order.del=false;
         	$scope.users.change=false;
+        	$rootScope.showUserMenu = false;  
         	
-        	if(user==""){
+        	if(user.uloga=="REG"){
 	        	$rootScope.showAdminMenu = false;  
-	        	$rootScope.showSideMenu = false;
+	        	$rootScope.showSideMenu = true;
 	        	$rootScope.showDostMenu = false;
-	        	$rootScope.showUserMenu = false;      
-	        	$rootScope.logged = false;
+	        	$rootScope.showUserMenu = true;      
+	        	$rootScope.logged = true;
 	        	return;
         	}
         	else if(user.uloga=="ADMIN"){
@@ -116,32 +118,31 @@
 	        	  
 	           });
         }
-        
+        cc.doSearch = function(){
+        	$location.path('/search');	 
+        }
         cc.goGetDelivery = function(){
         	if($scope.isGetDelivery==true)
         		return;
         	$location.path('/getDelivery');	 
-        	$scope.isGetDelivery =true;  
-        	$scope.isProfile = false;  
+        	$scope.isGetDelivery =true;   
         	$scope.isMyDeliveries = false;
         }
         cc.goMyDeliveries = function(){
         	if($scope.isMyDeliveries ==true)
         		return;
         	$location.path('/myDeliveries');	 
-        	$scope.isGetDelivery =false;  
-        	$scope.isProfile = false;  
+        	$scope.isGetDelivery =false;          	 
         	$scope.isMyDeliveries = true;
         }
         cc.goHome = function(){
+        	$location.path('/home');
         	if($scope.isHome == true ){
         		return;
         	}
         	$scope.isHome = true;
         	$scope.isFavorite = false;
-        	$scope.isProfile = false;
         	$scope.isOrders = false;
-        	$location.path('/home');
         }
         cc.goFavorite = function(){
         	if($scope.isFavorite == true ){
@@ -149,7 +150,6 @@
         	}
         	$scope.isHome = false;
         	$scope.isFavorite = true;
-        	$scope.isProfile = false;
         	$scope.isOrders = false;
         	$location.path('/favourite');
         }
@@ -159,22 +159,10 @@
         	}
         	$scope.isHome = false;
         	$scope.isFavorite = false;
-        	$scope.isProfile = false;
         	$scope.isOrders = true;
         	$location.path('/myOrders');
         }
-        cc.goProfile = function(){
-        	if($scope.isProfile == true ){
-        		return;
-        	}
-        	$scope.isHome = false;
-        	$scope.isFavorite = false;
-        	$scope.isProfile = true;
-        	$scope.isOrders = false;
-        	$scope.isGetDelivery =false;
-        	$scope.isMyDeliveries = false;
-        	$location.path('/profile');
-        }
+        
         cc.addRest = function(){
         	if($rootScope.addRest == true ){
         		return;

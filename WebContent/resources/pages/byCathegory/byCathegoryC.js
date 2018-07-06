@@ -79,7 +79,7 @@
         	$rootScope.narudzbina.rest=$scope.rest;
         	$rootScope.narudzbina.napomena = $scope.napomena;
         	var tryUser = $cookies.get('user');
-        	if(tryUser==undefined || tryUSer==null){
+        	if(tryUser==undefined || tryUser==null){
         		$scope.secretMessage = "Log in first and then make your order!";
         		bcc.showResponse();
         		return;

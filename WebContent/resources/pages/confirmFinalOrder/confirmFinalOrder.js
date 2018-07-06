@@ -41,7 +41,7 @@
         			"cena": $scope.cena
         	};
         	for(var i=0; i<$rootScope.narudzbina.rest.jela.length; i++){
-        		if($rootScope.narudzbina.rest.jela[i].kolicina>=0){
+        		if($rootScope.narudzbina.rest.jela[i].kolicina>0){
         			data.stavke.push({
         				"idArtikla":$rootScope.narudzbina.rest.jela[i].id,
         				"naziv":$rootScope.narudzbina.rest.jela[i].naziv,
@@ -51,7 +51,7 @@
         		}
         	}
         	for(var i=0; i<$rootScope.narudzbina.rest.pica.length; i++){
-        		if($rootScope.narudzbina.rest.pica[i].kolicina>=0){
+        		if($rootScope.narudzbina.rest.pica[i].kolicina>0){
         			data.stavke.push({
         				"idArtikla":$rootScope.narudzbina.rest.pica[i].id,
         				"naziv":$rootScope.narudzbina.rest.pica[i].naziv,
@@ -78,7 +78,7 @@
            	$timeout(function() {
     		    	  $scope.showMessage= false;
     		    	  if($scope.secretMessage=="Your order is sent succesfully"){
-    		    		  $location.path('/profile');
+    		    		  $location.path('/myOrders');
     		               $rootScope.narudzbina = {};
     		    	  }
     		      }, 3000);   

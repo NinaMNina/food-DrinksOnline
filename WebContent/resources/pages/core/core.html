@@ -8,7 +8,7 @@
 			
 		</tr>
 		<tr class='trCoreCover'>
-			<th ><img alt="logo" class='imgCore' src="resources/images/cover.png" /></th>
+			<th ><div ng-click='cc.goHome()'><img alt="logo" class='imgCore' ng-src="resources/images/cover.png" /></div></th>
 			<td></td>
 			<td></td>
 		</tr>
@@ -28,9 +28,7 @@
 				  <li ng-show='isFavorite'><a class="aCoreActiv" href="" ng-click='cc.goFavorite()'>Favorite</a></li>
 				  <li ng-hide='isOrders'><a class="aCore" href="" ng-click='cc.goOrders()'>My Orders</a></li>
 				  <li ng-show='isOrders'><a class="aCoreActiv" href="" ng-click='cc.goOrders()'>My Orders</a></li>
-				  <li ng-hide='isProfile'><a class="aCore" href="" ng-click='cc.goProfile()'>Profile</a></li>
-				  <li ng-show='isProfile'><a class="aCoreActiv" href="" ng-click='cc.goProfile()'>Profile</a></li>
-				</ul>
+				 </ul>
 			</th>
 			<th width='20%'  ng-show='showDostMenu'>
 				<ul class='ulCore'>
@@ -38,8 +36,6 @@
 				  <li ng-show='isGetDelivery'><a class="aCoreActiv" href="" ng-click='cc.goGetDelivery()'>Get Delivery</a></li>
 				   <li ng-hide='isMyDeliveries'><a class="aCore" href="" ng-click='cc.goMyDeliveries()'>My Deliveries</a></li>
 				  <li ng-show='isMyDeliveries'><a class="aCoreActiv" href="" ng-click='cc.goMyDeliveries()'>My Deliveries</a></li>
-				  <li ng-hide='isProfile'><a class="aCore" href="" ng-click='cc.goProfile()'>Profile</a></li>
-				  <li ng-show='isProfile'><a class="aCoreActiv" href="" ng-click='cc.goProfile()'>Profile</a></li>
 				  <li height='100px' ><br><br><br><br></li>
 				  <li class='lineCore' ng-show='hasDelivery'>from: {{currentDelivery.nazivRestorana}}<br>
 				  						to: {{currentDelivery.korisnik}}<br>
@@ -92,7 +88,14 @@
 			<td width='15%' class='rightCore' ng-show='showSideMenu'>
 				<div>
 					<table>
-						<tr><td><input type='text' ng-model='search'/></td></tr>
+						<tr><td>
+							<input type='text' ng-model='search.tekstR' ng-disabled='!search.restorani'/><br>
+							<input type="checkbox" ng-model="search.restorani" ng-true-value="true" ng-false-value="false">search restaurants</input>
+						</td></tr>
+						<tr><td>
+							<input type='text' ng-model='search.tekstI' ng-disabled='!search.items'/><br>
+							<input type="checkbox" ng-model="search.items" ng-true-value="true" ng-false-value="false">search menu items</input>
+						</td></tr>
 						<tr><td><button class='buttonCore' ng-click="cc.doSearch()">search</button></td></tr>
 						<tr><td height='20px'></tr>
 						<tr><td>Restaurant cathegories:</td></tr>

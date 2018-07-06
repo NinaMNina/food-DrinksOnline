@@ -145,6 +145,12 @@
             templateUrl: 'resources/pages/order/delOrder.html',
             controller: 'orderController',
             controllerAs: 'oc'
+        })        
+        .state('core.search', {
+            url: 'search',
+            templateUrl: 'resources/pages/search/search.html',
+            controller: 'searchController',
+            controllerAs: 'sc'
         });
 
 

@@ -38,6 +38,7 @@
               	$location.path('/home'); 
         		$rootScope.logged = true;
 	        	$rootScope.showSideMenu = true;
+              	$rootScope.showUserMenu=true; 
               	if(response.data.uloga=='ADMIN'){
                   	$rootScope.showAdminMenu=true;
                   	$rootScope.showUserMenu=false;   

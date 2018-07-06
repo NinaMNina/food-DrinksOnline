@@ -1,27 +1,45 @@
-<div ng-hide='isM'>
-	<h3 class='h3Restaurant'>TOP 10 ORDERS:</h3>
-	<table width='100%' class='tableRestaurant'>
-		<tr ng-repeat='a in top'>
+<div ng-hide='showMenuu'>	
+	<div ng-show='isRest && !isItems'>
+		<h3 class='h3Restaurant'>Search results for {{search.tekstR}}</h3>
+		<table width='100%' class='tableRestaurant'>
+			<tr ng-repeat='r in restorani'>
+				<th><a  class='RestName' ng-click='hc.showRestaurantsMenu(r)'>{{r.naziv}}</a></th>
+				<th>{{r.adresa}}</th>
+				<th>{{r.kategorija}}</th>
+				<th ng-hide='user.omiljeno.indexOf(r.id)>=0 || logged'><button ng-click='hc.addToFavs(r.id)' class='buttonCore'>save</button></th>
+			</tr>
+		</table>
+	</div>
+	<div ng-show='!isRest && isItems'>
+		<h3 class='h3Restaurant'>Search results for {{search.tekstI}}</h3>
+		<table width='100%' class='tableRestaurant'>
+			<tr ng-repeat='a in artikli'>
 				<td class='jeloEdit'>
 					Restaurant: {{a.rNaziv}} -- {{a.rAdresa}} -- {{a.kategorija}}<br> 
-					<span class='RestName'> {{$index + 1}}. {{a.naziv}}</span><br/>
+					<span class='RestName'>{{a.naziv}}</span><br/>
 					description: {{a.opis}}<br/>
 					amount: {{a.kolicina}}{{a.mera}} <br/>
 					price: {{a.cena}} RSD<br/>
 				</td>
 			</tr>
-	</table>
-	<h3 class='h3Restaurant'></h3>
-	<table width='100%' class='tableRestaurant'>
-		<tr ng-repeat='r in restorani'>
-			<th><a  class='RestName' ng-click='hc.showRestaurantsMenu(r)'>{{r.naziv}}</a></th>
-			<th>{{r.adresa}}</th>
-			<th>{{r.kategorija}}</th>
-			<th ng-hide='user.omiljeno.indexOf(r.id)>=0 || logged'><button ng-click='hc.addToFavs(r.id)' class='buttonCore'>save</button></th>
-		</tr>
-	</table>
+		</table>
+	</div>
+	<div ng-show='isRest && isItems'>
+		<h3 class='h3Restaurant'>Search results for '{{search.tekstR}}' and '{{search.tekstI}}'</h3>
+		<table width='100%' class='tableRestaurant'>
+			<tr ng-repeat='a in artikli'>
+				<td class='jeloEdit'>
+					Restaurant: {{a.rNaziv}} -- {{a.rAdresa}} -- {{a.kategorija}}<br> 
+					<span class='RestName'>{{a.naziv}}</span><br/>
+					description: {{a.opis}}<br/>
+					amount: {{a.kolicina}}{{a.mera}} <br/>
+					price: {{a.cena}} RSD<br/>
+				</td>
+			</tr>
+		</table>
+	</div>
 </div>
-<div ng-show='isM'>
+<div ng-show='showMenuu'>
 	<h3 class='h3Restaurant'>{{rest.naziv}}</h3>
 	<table width='100%' class='tableRestaurant'>
 		<tr>
@@ -49,7 +67,7 @@
 								description: {{pice.opis}}<br/>
 								weight: {{pice.mililitara}} ml <br/>
 								price: {{pice.cena}} RSD<br/>
-								<button ng-click='hc.minus(pice)'>-</button><input disabled type="text" size='2' ng-model='pice.kolicina' value='0'/><button ng-click='hc.plus(pice)'>+</button>
+								<button ng-click='bcc.minus(pice)'>-</button><input disabled type="text" size='2' ng-model='pice.kolicina' value='0'/><button ng-click='bcc.plus(pice)'>+</button>
 							</td>
 						</tr>
 					</table>
