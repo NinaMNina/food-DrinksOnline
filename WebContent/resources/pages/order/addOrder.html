@@ -1,0 +1,78 @@
+<div ng-show='isRest'>
+	<h3 class='h3Restaurant'>{{cath}}</h3>
+	<table width='100%' class='tableRestaurant'>
+		<tr ng-repeat='r in restorani'>
+			<th><a  class='RestName' ng-click='oc.showRestaurantsMenu(r)'>{{r.naziv}}</a></th>
+			<th>{{r.adresa}}</th>
+			<th>{{r.kateg}}</th>
+		</tr>
+	</table>
+</div>
+<div ng-hide='isRest'>
+	<h3 class='h3Restaurant'>{{rest.naziv}}</h3>
+	<table width='100%' class='tableRestaurant'>
+		<tr>
+			<td width='50%'>
+				<div>
+					<table>
+						<tr ng-repeat='jelo in rest.jela'>
+							<td class='jeloEdit'>
+								<span class='RestName'>{{jelo.naziv}}</span><br/>
+								description: {{jelo.opis}}<br/>
+								weight: {{jelo.grama}} g <br/>
+								price: {{jelo.cena}} RSD<br/>
+								<button ng-click='oc.minus(jelo)'>-</button><input disabled type="text" size='2' ng-model='jelo.kolicina' value='0'/><button ng-click='oc.plus(jelo)'>+</button>
+							</td>
+						</tr>
+					</table>
+				</div>
+			</td>
+			<td width='50%'>
+				<div>
+					<table>
+						<tr ng-repeat='pice in rest.pica'>
+							<td class='piceEdit'>
+								<span class='RestName'>{{pice.naziv}}</span><br/>
+								description: {{pice.opis}}<br/>
+								weight: {{pice.mililitara}} ml <br/>
+								price: {{pice.cena}} RSD<br/>
+								<button ng-click='oc.minus(pice)'>-</button><input disabled type="text" size='2' ng-model='pice.kolicina' value='0'/><button ng-click='oc.plus(pice)'>+</button>
+							</td>
+						</tr>
+					</table>
+				</div>
+			</td>
+		</tr>
+	</table>
+	<table>
+		<tr>
+			<td width='20%'></td>
+			<td width='60%'>
+				for: <select size='10' ng-model="korisnik" >
+			     		 <option ng-repeat="o in reg" ng-value="o">{{o.username}} [{{o.ime}} {{o.prezime}}]</option>
+			    	</select>
+			</td>
+			<td width='20%'>
+				delivered by:<select size='10' ng-model="dostavljac" >
+					     		 <option ng-repeat="o in dost" ng-value="o">{{o.username}} [{{o.ime}} {{o.prezime}}]</option>
+					    	</select>
+			</td>
+		</tr>
+	</table>
+	<table>
+		<tr>
+			<td width='20%'></td>
+			<td width='60%'>
+				<textarea rows="4" cols="60" ng-model='napomena' placeholder='type any reference or special request if you have...'></textarea>
+			</td>
+			<td width='20%'>
+				<button ng-click='oc.makeOrder()'>make order</button>
+			</td>
+		</tr>
+		<tr>
+			<td></td>
+			<td>{{secretMessage}}</td>
+			<td></td>
+		</tr>
+	</table>
+</div>

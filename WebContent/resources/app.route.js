@@ -127,6 +127,24 @@
             templateUrl: 'resources/pages/myDeliveries/myDeliveries.html',
             controller: 'myDeliveriesController',
             controllerAs: 'mdc'
+        })        
+        .state('core.addOrder', {
+            url: 'addOrder',
+            templateUrl: 'resources/pages/order/addOrder.html',
+            controller: 'orderController',
+            controllerAs: 'oc'
+        })        
+        .state('core.editOrder', {
+            url: 'editOrder',
+            templateUrl: 'resources/pages/order/editOrder.html',
+            controller: 'orderController',
+            controllerAs: 'oc'
+        })        
+        .state('core.delOrder', {
+            url: 'delOrder',
+            templateUrl: 'resources/pages/order/delOrder.html',
+            controller: 'orderController',
+            controllerAs: 'oc'
         });
 
 

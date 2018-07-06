@@ -1,0 +1,127 @@
+<div ng-show='isChoosing'>
+	<h3>My Orders</h3>
+	<table  width='100%' class='tableRestaurant' ng-repeat='n in svePorudzbine | filter: { activ : true }'>
+		<tr>
+			<th class='jeloEdit' colspan='2'>
+				Order form: {{n.nazivRestorana}} 
+			</th>
+		</tr>	
+		<tr>
+			<th colspan='2'>
+				Ordered items:
+			</th>
+		</tr>
+		<tr ng-repeat='s in n.stavke'>
+			<td width='20%'></td>
+			<td width='80%'>
+				{{s.naziv}} ----> {{s.kolicina}}x
+			</td>
+		</tr>
+		<tr>	
+			<td>price</td>
+			<td>
+				{{n.cena}} RSD
+			</td>
+		</tr>
+		<tr>	
+			<td width='20%'>ordered on:</td>
+			<td width='80%'>
+				{{n.vreme}}
+			</td>
+		</tr>
+		<tr>
+			<td height='10px' colspan='2'>
+			</td>
+		</tr>	
+		<tr>
+			<td colspan='2'>
+				Special requests/message:
+			</td>
+		</tr>
+		<tr>
+		<tr>
+			<td></td>
+			<td>
+				<textarea rows="4" cols="60" ng-model='n.napomena' disabled></textarea>
+			</td>
+		</tr>
+		<tr>	
+			<td width='20%'>status:</td>
+			<td width='80%' class='piceEdit'>
+				{{n.status}}
+			</td>
+		</tr>
+		<tr>
+			<td height='50px'></td>
+			<td><button class='buttonCore' ng-click='oc.goEditing(n)'>change it</button></td>
+		</tr>
+	</table>
+</div>
+<div ng-hide='isChoosing'>
+	<h3 class='h3Restaurant'>{{rest.naziv}}</h3>
+	<table width='100%' class='tableRestaurant'>
+		<tr>
+			<td width='50%'>
+				<div>
+					<table>
+						<tr ng-repeat='jelo in rest.jela'>
+							<td class='jeloEdit'>
+								<span class='RestName'>{{jelo.naziv}}</span><br/>
+								description: {{jelo.opis}}<br/>
+								weight: {{jelo.grama}} g <br/>
+								price: {{jelo.cena}} RSD<br/>
+								<button ng-click='oc.minus(jelo)'>-</button><input disabled type="text" size='2' ng-model='jelo.kolicina' value='0'/><button ng-click='oc.plus(jelo)'>+</button>
+							</td>
+						</tr>
+					</table>
+				</div>
+			</td>
+			<td width='50%'>
+				<div>
+					<table>
+						<tr ng-repeat='pice in rest.pica'>
+							<td class='piceEdit'>
+								<span class='RestName'>{{pice.naziv}}</span><br/>
+								description: {{pice.opis}}<br/>
+								weight: {{pice.mililitara}} ml <br/>
+								price: {{pice.cena}} RSD<br/>
+								<button ng-click='oc.minus(pice)'>-</button><input disabled type="text" size='2' ng-model='pice.kolicina' value='0'/><button ng-click='oc.plus(pice)'>+</button>
+							</td>
+						</tr>
+					</table>
+				</div>
+			</td>
+		</tr>
+	</table>
+	<table>
+		<tr>
+			<td width='20%'></td>
+			<td width='60%'>
+				for: <select size='10' ng-model="korisnik" >
+			     		 <option ng-repeat="o in reg" ng-value="o">{{o.username}} [{{o.ime}} {{o.prezime}}]</option>
+			    	</select>
+			</td>
+			<td width='20%'>
+				delivered by:<select size='10' ng-model="dostavljac" >
+					     		 <option ng-repeat="o in dost" ng-value="o">{{o.username}} [{{o.ime}} {{o.prezime}}]</option>
+					    	</select>
+			</td>
+		</tr>
+	</table>
+	<table>
+		<tr>
+			<td width='20%'></td>
+			<td width='60%'>
+				<textarea rows="4" cols="60" ng-model='napomena' placeholder='type any reference or special request if you have...'></textarea>
+			</td>
+			<td width='20%'>
+				<button ng-click='oc.saveChangedOrder()'>save changes</button>
+			</td>
+		</tr>
+		<tr>
+			<td></td>
+			<td>{{secretMessage}}</td>
+			<td></td>
+		</tr>
+	</table>
+</div>

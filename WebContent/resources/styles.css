@@ -14,6 +14,10 @@ body {
     text-align: left;
     top: 150px;
 }
+.lineCore{
+	background-color: #8B0000;
+	color: white
+}
 .aImgCore{
 	width:100%;
     display: block;
@@ -78,6 +82,7 @@ body {
     overflow:hidden;
 }
 .tableAccount{
+    top: 50%px;
 	text-align: left;
 }
 .tableRestaurant{

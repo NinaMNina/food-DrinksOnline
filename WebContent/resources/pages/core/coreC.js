@@ -12,15 +12,18 @@
         var init = function (){      
         	$rootScope.logged = false;	
         	var tryUser = $cookies.get('user');
+        	var user = {};
         	if(tryUser!=undefined){
-        		var user = JSON.parse(tryUser);
+        		user = JSON.parse(tryUser);
         		$rootScope.logged = true;        		
         	}
+        	$rootScope.currentDelivery = {};
         	$rootScope.showDostMenu = false;
 
         	$rootScope.showAdminMenu = false;
         	$rootScope.showUserMenu = true;
         	$rootScope.showSideMenu = true;
+        	$rootScope.hasDelivery = false;
         	$scope.isHome = true;
         
         	$scope.isFavorite = false;
@@ -32,6 +35,7 @@
         	$scope.rest = {};
         	$scope.item = {};
         	$scope.vehicle = {};
+        	$scope.order = {};
         	$scope.users = {};
         	$rootScope.addRest=false;
         	$scope.rest.edit=false;
@@ -42,11 +46,18 @@
         	$scope.vehicle.add=false;
         	$scope.vehicle.edit=false;
         	$scope.vehicle.del=false;
+        	$scope.order.add=false;
+        	$scope.order.edit=false;
+        	$scope.order.del=false;
         	$scope.users.change=false;
         	
-        	if(user==undefined){
+        	if(user==""){
 	        	$rootScope.showAdminMenu = false;  
+	        	$rootScope.showSideMenu = false;
+	        	$rootScope.showDostMenu = false;
+	        	$rootScope.showUserMenu = false;      
 	        	$rootScope.logged = false;
+	        	return;
         	}
         	else if(user.uloga=="ADMIN"){
 	        	$rootScope.showAdminMenu = true;
@@ -72,12 +83,13 @@
 		        	  if(response.data!=null || response.data!=""){
 			        	  	var r = response.data;
 			        	  	$scope.porudzbina = response.data;
-			          		$scope.onDelivery = "to:" + r.korisnik + " from:" + r.nazivRestorana
-			          				+ " special:" +r.napomena + " price:" + r.cena + " RSD";		        		  
+			          		$scope.currentDelivery = response.data;	 
+			            	$rootScope.hasDelivery = true;       		  
 		        	  }
 		        	  else{
 		        		  $scope.porudzbina = {};
 		        		  $scope.onDelivery = "";
+		              	$rootScope.hasDelivery = false;
 		        	  }
 		          }, function errorCallback(response) {
 		        	  
@@ -98,8 +110,8 @@
 	            method: 'PUT',
 	            url: 'rest/porudzbina/done/'+$scope.porudzbina.id
 	          }).then(function successCallback(response) {
-	        	  	$scope.porudzbina = response.data;
-	          		$scope.onDelivery = {};
+	          		$scope.currentDelivery = {};	 
+	            	$rootScope.hasDelivery = false;    
 	          }, function errorCallback(response) {
 	        	  
 	           });
@@ -177,6 +189,9 @@
         	$scope.vehicle.edit=false;
         	$scope.vehicle.del=false;
         	$scope.users.change=false;
+        	$scope.order.add=false;
+        	$scope.order.edit=false;
+        	$scope.order.del=false;
         	$location.path('/addRestaurant');
         }
         cc.editRest = function(){
@@ -193,6 +208,9 @@
         	$scope.vehicle.edit=false;
         	$scope.vehicle.del=false;
         	$scope.users.change=false;
+        	$scope.order.add=false;
+        	$scope.order.edit=false;
+        	$scope.order.del=false;
         	$location.path('/editRestaurant');
         }
         cc.delRest = function(){
@@ -209,6 +227,9 @@
         	$scope.vehicle.edit=false;
         	$scope.vehicle.del=false;
         	$scope.users.change=false;
+        	$scope.order.add=false;
+        	$scope.order.edit=false;
+        	$scope.order.del=false;
         	$location.path('/delRestaurant');
         }
         cc.addItem = function(){
@@ -225,6 +246,9 @@
         	$scope.vehicle.edit=false;
         	$scope.vehicle.del=false;
         	$scope.users.change=false;
+        	$scope.order.add=false;
+        	$scope.order.edit=false;
+        	$scope.order.del=false;
         	$location.path('/addMenuItem');
         }
         cc.editItem = function(){
@@ -241,6 +265,9 @@
         	$scope.vehicle.edit=false;
         	$scope.vehicle.del=false;
         	$scope.users.change=false;
+        	$scope.order.add=false;
+        	$scope.order.edit=false;
+        	$scope.order.del=false;
         	$location.path('/editMenuItem');
         }
         cc.delItem = function(){
@@ -257,7 +284,67 @@
         	$scope.vehicle.edit=false;
         	$scope.vehicle.del=false;
         	$scope.users.change=false;
+        	$scope.order.add=false;
+        	$scope.order.edit=false;
+        	$scope.order.del=false;
         	$location.path('/delMenuItem');
+        }
+        cc.addOrder = function(){
+        	if($scope.order.add == true ){
+        		return;
+        	}
+        	$rootScope.addRest=false;
+        	$scope.rest.edit=false;
+        	$scope.rest.del=false;
+        	$scope.item.add=false;
+        	$scope.item.edit=false;
+        	$scope.item.del=false;
+        	$scope.vehicle.add=false;
+        	$scope.vehicle.edit=false;
+        	$scope.vehicle.del=false;
+        	$scope.users.change=false;
+        	$scope.order.add=true;
+        	$scope.order.edit=false;
+        	$scope.order.del=false;
+        	$location.path('/addOrder');
+        }
+        cc.editOrder = function(){
+        	if($scope.order.edit == true ){
+        		return;
+        	}
+        	$rootScope.addRest=false;
+        	$scope.rest.edit=false;
+        	$scope.rest.del=false;
+        	$scope.item.add=false;
+        	$scope.item.edit=false;
+        	$scope.item.del=false;
+        	$scope.vehicle.add=false;
+        	$scope.vehicle.edit=false;
+        	$scope.vehicle.del=false;
+        	$scope.users.change=false;
+        	$scope.order.add=false;
+        	$scope.order.edit=true;
+        	$scope.order.del=false;
+        	$location.path('/editOrder');
+        }
+        cc.delOrder = function(){
+        	if($scope.order.del == true ){
+        		return;
+        	}
+        	$rootScope.addRest=false;
+        	$scope.rest.edit=false;
+        	$scope.rest.del=false;
+        	$scope.item.add=false;
+        	$scope.item.edit=false;
+        	$scope.item.del=false;
+        	$scope.vehicle.add=false;
+        	$scope.vehicle.edit=false;
+        	$scope.vehicle.del=false;
+        	$scope.users.change=false;
+        	$scope.order.add=false;
+        	$scope.order.edit=false;
+        	$scope.order.del=true;
+        	$location.path('/delOrder');
         }
         cc.addVehicle = function(){
         	if($scope.vehicle.add == true ){
@@ -273,6 +360,9 @@
         	$scope.vehicle.edit=false;
         	$scope.vehicle.del=false;
         	$scope.users.change=false;
+        	$scope.order.add=false;
+        	$scope.order.edit=false;
+        	$scope.order.del=false;
         	$location.path('/addVehicle');
         }
         cc.editVehicle = function(){
@@ -289,6 +379,9 @@
         	$scope.vehicle.edit=true;
         	$scope.vehicle.del=false;
         	$scope.users.change=false;
+        	$scope.order.add=false;
+        	$scope.order.edit=false;
+        	$scope.order.del=false;
         	$location.path('/editVehicle');
         }
         cc.delVehicle = function(){
@@ -305,6 +398,9 @@
         	$scope.vehicle.edit=false;
         	$scope.vehicle.del=true;
         	$scope.users.change=false;
+        	$scope.order.add=false;
+        	$scope.order.edit=false;
+        	$scope.order.del=false;
         	$location.path('/delVehicle');
         }
         cc.changeType = function(){
@@ -321,6 +417,9 @@
         	$scope.vehicle.edit=false;
         	$scope.vehicle.del=false;
         	$scope.users.change=true;
+        	$scope.order.add=false;
+        	$scope.order.edit=false;
+        	$scope.order.del=false;
         	$location.path('/changeType');
         }
         cc.signUp = function(){
@@ -338,6 +437,7 @@
         	$cookies.remove('user');
         	$rootScope.showAdminMenu = false;
         	$rootScope.showUserMenu = true;
+        	$rootScope.showDostMenu = false;
         	$rootScope.isHome = false;
         	$rootScope.logged = false;
         	$location.path('/home');

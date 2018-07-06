@@ -35,6 +35,30 @@ public class KorisnikController {
 		return Response.ok(r, MediaType.APPLICATION_JSON).build();
 	}
 	@GET
+	@Path("/reg")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response regKorisnici() {	
+		List<Korisnik> ret = new ArrayList<>();
+		List<Korisnik> r = Data.getInstance().getKorisnici();
+		for(Korisnik k0 : r){
+			if(k0.getUloga().equals(Uloga.REG))
+				ret.add(k0);
+		}
+		return Response.ok(ret, MediaType.APPLICATION_JSON).build();
+	}
+	@GET
+	@Path("/dost")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response dostKorisnici() {	
+		List<Korisnik> ret = new ArrayList<>();
+		List<Korisnik> r = Data.getInstance().getKorisnici();
+		for(Korisnik k0 : r){
+			if(k0.getUloga().equals(Uloga.DOST))
+				ret.add(k0);
+		}
+		return Response.ok(ret, MediaType.APPLICATION_JSON).build();
+	}
+	@GET
 	@Path("/{username}")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)

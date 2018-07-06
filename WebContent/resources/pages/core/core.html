@@ -12,6 +12,9 @@
 			<td></td>
 			<td></td>
 		</tr>
+		<tr class='trCoreCover'>
+			<th colspan='3' height='100px'></th>
+		</tr>
 	</table>
 </div>
 <div>
@@ -37,12 +40,15 @@
 				  <li ng-show='isMyDeliveries'><a class="aCoreActiv" href="" ng-click='cc.goMyDeliveries()'>My Deliveries</a></li>
 				  <li ng-hide='isProfile'><a class="aCore" href="" ng-click='cc.goProfile()'>Profile</a></li>
 				  <li ng-show='isProfile'><a class="aCoreActiv" href="" ng-click='cc.goProfile()'>Profile</a></li>
+				  <li height='100px' ><br><br><br><br></li>
+				  <li class='lineCore' ng-show='hasDelivery'>from: {{currentDelivery.nazivRestorana}}<br>
+				  						to: {{currentDelivery.korisnik}}<br>
+				  						special: {{currentDelivery.napomena}}<br>
+				  						on: {{currentDelivery.vreme}}<br>
+				  						price: {{currentDelivery.cena}} RSD<br>				  
+				  </li>
+				  <li ng-show='hasDelivery'><button class='buttonCore' ng-click='cc.didMyDelivery()'>DELIVERED</button></li>
 				</ul>
-				<span height='50px'></span><br/>
-				<div ng-show='hasDelivery'>
-					{{onDelivery}}<br/>
-					<button class='buttonCore' ng-click='cc.didMyDelivery()'>DELIVERED</button>					
-				</div>
 				
 			</th>
 			<th width='20%'  ng-show='showAdminMenu'>
@@ -61,6 +67,13 @@
 				  <li ng-show='item.edit'><a class="aCoreActiv" href="" ng-click='cc.editItem()'>Edit</a></li>
 				  <li ng-hide='item.del'><a class="aCore" href="" ng-click='cc.delItem()'>Delete</a></li>
 				  <li ng-show='item.del'><a class="aCoreActiv" href="" ng-click='cc.delItem()'>Delete</a></li>
+				  <li class='liCore'>Orders</li>
+				  <li ng-hide='order.add'><a class="aCore" href="" ng-click='cc.addOrder()'>Add</a></li>
+				  <li ng-show='order.add'><a class="aCoreActiv" href="" ng-click='cc.addOrder()'>Add</a></li>
+				  <li ng-hide='order.edit'><a class="aCore" href="" ng-click='cc.editOrder()'>Edit</a></li>
+				  <li ng-show='order.edit'><a class="aCoreActiv" href="" ng-click='cc.editOrder()'>Edit</a></li>
+				  <li ng-hide='order.del'><a class="aCore" href="" ng-click='cc.delOrder()'>Delete</a></li>
+				  <li ng-show='order.del'><a class="aCoreActiv" href="" ng-click='cc.delOrder()'>Delete</a></li>
 				  <li class='liCore'>Vehicle</li>
 				  <li ng-hide='vehicle.add'><a class="aCore" href="" ng-click='cc.addVehicle()'>Add</a></li>
 				  <li ng-show='vehicle.add'><a class="aCoreActiv" href="" ng-click='cc.addVehicle()'>Add</a></li>

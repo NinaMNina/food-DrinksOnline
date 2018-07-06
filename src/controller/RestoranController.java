@@ -40,8 +40,8 @@ public class RestoranController {
 	
 	@GET
 	@Path("/svisvi")
-	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
 	public Response basSviRestorani() {	
 	//	k.setDatumRegistracije(new Date(k.getDatumRegistracije()));
 		System.out.println("tu sam i dobavnljam sve sve restorane");
@@ -52,6 +52,7 @@ public class RestoranController {
 	@GET
 	@Path("/omiljeno/{username}")
 	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
 	public Response omiljeniRestorani(@PathParam("username") String username) {	
 	//	k.setDatumRegistracije(new Date(k.getDatumRegistracije()));
 		ArrayList<Restoran> r = new ArrayList<>();
@@ -68,11 +69,9 @@ public class RestoranController {
 	}
 	@GET
 	@Path("/svi")
-	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
 	public Response sviRestorani() {	
-	//	k.setDatumRegistracije(new Date(k.getDatumRegistracije()));
-		System.out.println("tu sam i dobavnljam restorane");
 		List<Restoran> r = Data.getInstance().getRestorani();
 		ArrayList<Restoran> r0 = new ArrayList<Restoran>();
 		JsonSerializer.saveData();
@@ -84,9 +83,22 @@ public class RestoranController {
 		return Response.ok(r0, MediaType.APPLICATION_JSON).build();
 	}
 	@GET
-	@Path("/{c}")
-	@Consumes(MediaType.APPLICATION_JSON)
+	@Path("/jedan/{id}")
 	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
+	public Response dajRestoran(@PathParam("id") int id) {	
+		List<Restoran> r = Data.getInstance().getRestorani();
+		for(Restoran r0 : r){
+			if(r0.getId()==id){
+				return Response.ok(r0, MediaType.APPLICATION_JSON).build();
+			}
+		}
+		return Response.status(Status.BAD_REQUEST).build();
+	}
+	@GET
+	@Path("/{c}")
+	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
 	public Response restoraniPoKategoriji(@PathParam("c") String c) {	
 	//	k.setDatumRegistracije(new Date(k.getDatumRegistracije()));
 		System.out.println("tu sam i dobavnljam restorane po kategoriji");
@@ -135,8 +147,8 @@ public class RestoranController {
 	}
 	@DELETE
 	@Path("/brisi/{id}")
-	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
 	public Response brisiRestoran(@PathParam("id") int id) {	
 	//	k.setDatumRegistracije(new Date(k.getDatumRegistracije()));
 		System.out.println("tu sam i brisem restoran");

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
@@ -18,9 +19,7 @@ import jsonData.Data;
 import jsonData.JsonSerializer;
 import bean.Korisnik;
 import bean.Porudzbina;
-import bean.Restoran;
 import bean.enums.StatusPorudzbine;
-import bean.enums.Uloga;
 
 @Path("/porudzbina")
 public class PorudzbinaController {
@@ -57,7 +56,19 @@ public class PorudzbinaController {
 		return Response.status(Status.BAD_REQUEST).build();
 	}
 	@GET
-	@Path("moje/{username}")
+	@Path("/sve")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response svePorudzbine() {
+		ArrayList<Porudzbina> p = new ArrayList<>();
+		ArrayList<Korisnik> korisnici = Data.getInstance().getKorisnici();
+		for(Korisnik k0 : korisnici){
+			for(Porudzbina p0 : k0.getPorudzbine())
+				p.add(p0);
+		}
+		return Response.ok(p, MediaType.APPLICATION_JSON).build();
+	}
+	@GET
+	@Path("/moje/{username}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response mojeDostave(@PathParam("username") String username) {
 		ArrayList<Porudzbina> p = new ArrayList<>();
@@ -84,6 +95,39 @@ public class PorudzbinaController {
 			}
 		}
 		return Response.ok(p, MediaType.APPLICATION_JSON).build();
+	}
+	@DELETE
+	@Path("/brisi/{id}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response izvrisiPorudzbina(@PathParam("id") int id) {	
+		ArrayList<Korisnik> korisnici = Data.getInstance().getKorisnici();
+		for(Korisnik k0 : korisnici){
+			for(int i=0; i<k0.getPorudzbine().size(); i++){
+				if(k0.getPorudzbine().get(i).getId()==id){
+					k0.getPorudzbine().get(i).setActiv(false);;
+					JsonSerializer.saveData();
+					return Response.ok(k0.getPorudzbine().get(i), MediaType.APPLICATION_JSON).build();			
+				}
+			}
+		}
+		return Response.status(Status.BAD_REQUEST).build();
+	}
+	@PUT
+	@Path("/{id}")
+	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
+	public Response changedPorudzbina(@PathParam("id") int id, Porudzbina p) {	
+		ArrayList<Korisnik> korisnici = Data.getInstance().getKorisnici();
+		for(Korisnik k0 : korisnici){
+			for(int i=0; i<k0.getPorudzbine().size(); i++){
+				if(k0.getPorudzbine().get(i).getId()==id){
+					k0.getPorudzbine().set(i, p);
+					JsonSerializer.saveData();
+					return Response.ok(p, MediaType.APPLICATION_JSON).build();			
+				}
+			}
+		}
+		return Response.status(Status.BAD_REQUEST).build();
 	}
 	@PUT
 	@Path("/done/{id}")

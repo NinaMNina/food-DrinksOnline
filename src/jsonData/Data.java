@@ -9,6 +9,7 @@ import bean.Pice;
 import bean.Porudzbina;
 import bean.Restoran;
 import bean.Vozilo;
+import bean.enums.StatusPorudzbine;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -60,20 +61,22 @@ public class Data implements Serializable{
 	}
 	@JsonIgnore
 	public int getJelaLength() {
+		return getFinalLength();
+	}
+	@JsonIgnore
+	public int getPicaLength() {
+		return getFinalLength();
+	}
+	@JsonIgnore
+	public int getFinalLength() {
 		int retVal=0;
 		for(Restoran r0 : restorani){
+			retVal+=r0.getPica().size();
 			retVal+=r0.getJela().size();
 		}
 		return retVal;
 	}
-	@JsonIgnore
-	public int getPicaLength() {
-		int retVal=0;
-		for(Restoran r0 : restorani){
-			retVal+=r0.getPica().size();
-		}
-		return retVal;
-	}
+	
 
 	@JsonIgnore
 	public void addJelo(Jelo j) {
@@ -106,7 +109,7 @@ public class Data implements Serializable{
 		Porudzbina ret = null;
 		for(Korisnik k : korisnici){
 			for(Porudzbina p0 : k.getPorudzbine()){
-				if(p0.getDostavljac().equals(un))
+				if(p0.getDostavljac().equals(un) && p0.getStatus().equals(StatusPorudzbine.UTOKU));
 					return p0;
 			}
 		}
