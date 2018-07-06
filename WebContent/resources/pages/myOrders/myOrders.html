@@ -1,0 +1,53 @@
+<div>
+	<h3>My Orders</h3>
+	<table  width='100%' class='tableRestaurant' ng-repeat='n in narudzbine'>
+		<tr>
+			<th class='jeloEdit' colspan='2'>
+				Order form: {{n.nazivRestorana}} 
+			</th>
+		</tr>	
+		<tr>
+			<th colspan='2'>
+				Ordered items:
+			</th>
+		</tr>
+		<tr ng-repeat='s in n.stavke'>
+			<td width='20%'></td>
+			<td width='80%'>
+				{{s.naziv}} ----> {{s.kolicina}}x
+			</td>
+		</tr>
+		<tr>	
+			<td width='20%'>ordered on:</td>
+			<td width='80%'>
+				{{n.vreme}}
+			</td>
+		</tr>
+		<tr>
+			<td height='10px' colspan='2'>
+			</td>
+		</tr>	
+		<tr>
+			<td colspan='2'>
+				Special requests/message:
+			</td>
+		</tr>
+		<tr>
+		<tr>
+			<td></td>
+			<td>
+				<textarea rows="4" cols="60" ng-model='n.napomena' disabled></textarea>
+			</td>
+		</tr>
+		<tr>	
+			<td width='20%'>status:</td>
+			<td width='80%' class='piceEdit'>
+				{{n.status}}
+			</td>
+		</tr>
+		<tr>
+			<td height='50px' colspan='2'>
+			</td>
+		</tr>
+	</table>
+</div>

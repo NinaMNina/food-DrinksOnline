@@ -73,7 +73,7 @@
         	$scope.isFavorite = true;
         	$scope.isProfile = false;
         	$scope.isOrders = false;
-        	$location.path('/favorite');
+        	$location.path('/favourite');
         }
         cc.goOrders = function(){
         	if($scope.isOrders == true ){
@@ -83,7 +83,7 @@
         	$scope.isFavorite = false;
         	$scope.isProfile = false;
         	$scope.isOrders = true;
-        	$location.path('/orders');
+        	$location.path('/myOrders');
         }
         cc.goProfile = function(){
         	if($scope.isProfile == true ){

@@ -12,10 +12,12 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.Response.Status;
 
 import jsonData.Data;
 import jsonData.JsonSerializer;
 import bean.Jelo;
+import bean.Korisnik;
 import bean.Pice;
 import bean.Restoran;
 import bean.enums.Kategorija;
@@ -45,6 +47,23 @@ public class RestoranController {
 		System.out.println("tu sam i dobavnljam sve sve restorane");
 		List<Restoran> r = Data.getInstance().getRestorani();
 		JsonSerializer.saveData();
+		return Response.ok(r, MediaType.APPLICATION_JSON).build();
+	}
+	@GET
+	@Path("/omiljeno/{username}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response omiljeniRestorani(@PathParam("username") String username) {	
+	//	k.setDatumRegistracije(new Date(k.getDatumRegistracije()));
+		ArrayList<Restoran> r = new ArrayList<>();
+		ArrayList<Korisnik> korisnici = Data.getInstance().getKorisnici();
+		for(Korisnik k0 : korisnici){
+			if(k0.getUsername().equals(username)){
+				for(Restoran r0 : Data.getInstance().getRestorani()){
+					if(k0.getOmiljeno().contains(r0.getId()))
+						r.add(r0);
+				}
+			}
+		}
 		return Response.ok(r, MediaType.APPLICATION_JSON).build();
 	}
 	@GET

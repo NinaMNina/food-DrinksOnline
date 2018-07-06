@@ -103,6 +103,18 @@
             templateUrl: 'resources/pages/confirmFinalOrder/confirmFinalOrder.html',
             controller: 'confirmFinalOrderController',
             controllerAs: 'cfc'
+        })
+        .state('core.favourite', {
+            url: 'favourite',
+            templateUrl: 'resources/pages/favourite/favourite.html',
+            controller: 'favouriteController',
+            controllerAs: 'favc'
+        })
+        .state('core.myOrders', {
+            url: 'myOrders',
+            templateUrl: 'resources/pages/myOrders/myOrders.html',
+            controller: 'myOrdersController',
+            controllerAs: 'moc'
         });
 
 

@@ -1,15 +1,15 @@
-<div ng-show='isCath'>
-	<h3 class='h3Restaurant'>{{cath}}</h3>
+<div ng-show='isFav'>
+	<h3 class='h3Restaurant'>My Favourite Restaurants</h3>
 	<table width='100%' class='tableRestaurant'>
 		<tr ng-repeat='r in restorani'>
-			<th><a  class='RestName' ng-click='bcc.showRestaurantsMenu(r)'>{{r.naziv}}</a></th>
+			<th><a  class='RestName' ng-click='favc.showRestaurantsMenu(r)'>{{r.naziv}}</a></th>
 			<th>{{r.adresa}}</th>
-			<th ng-hide='user.omiljeno.indexOf(r.id) >= 0'><button ng-click='bcc.addToFavs(r.id)' class='buttonCore'>save</button></th>
 		</tr>
 	</table>
 </div>
-<div ng-hide='isCath'>
+<div ng-hide='isFav'>
 	<h3 class='h3Restaurant'>{{rest.naziv}}</h3>
+	<button ng-click='favc.goBack()'>go back to favourite</button>
 	<table width='100%' class='tableRestaurant'>
 		<tr>
 			<td width='50%'>
@@ -50,7 +50,7 @@
 				<textarea rows="4" cols="60" ng-model='napomena' placeholder='type any reference or special request if you have...'></textarea>
 			</td>
 			<td width='40%'>
-				<button ng-click='bcc.makeOrder()'>make order</button>
+				<button ng-click='favc.makeOrder()'>make order</button>
 			</td>
 		</tr>
 	</table>
